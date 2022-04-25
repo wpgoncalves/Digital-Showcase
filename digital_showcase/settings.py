@@ -121,20 +121,19 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = Path.joinpath(BASE_DIR, 'static')
 
-STATICFILES_DIRS = [
-    ('css', Path.joinpath(STATIC_ROOT, 'css')),
-    ('fonts', Path.joinpath(STATIC_ROOT, 'fonts')),
-    ('img', Path.joinpath(STATIC_ROOT, 'img')),
-    ('js', Path.joinpath(STATIC_ROOT, 'js')),
-]
+# STATICFILES_DIRS = [
+#     ('css', Path.joinpath(STATIC_ROOT, 'css')),
+#     ('fonts', Path.joinpath(STATIC_ROOT, 'fonts')),
+#     ('img', Path.joinpath(STATIC_ROOT, 'img')),
+#     ('js', Path.joinpath(STATIC_ROOT, 'js')),
+# ]
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 if len(ALLOWED_HOSTS) > 0:
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
