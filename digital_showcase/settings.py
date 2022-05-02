@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Create an instance of django-environ and load environment variable values.
 # The .env file is not versioned.
 env = Env()
-Env.read_env(Path.joinpath(BASE_DIR, '.env'))
+# Env.read_env(Path.joinpath(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
