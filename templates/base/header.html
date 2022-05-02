@@ -1,0 +1,23 @@
+{% load static %}
+
+<div class="container-fluid border-bottom bg-header">
+    <div class="d-flex flex-wrap justify-content-center pt-3 pb-1 mb-2">
+
+        <a href="{% url 'choose-store' %}" class="d-flex align-items-center mb-md-0 me-md-auto text-decoration-none">
+
+            <img class="d-inline-block align-text-top" src="{% static 'img/brand.png' %}" alt="Brand" width="46"
+                height="46">
+
+            <span id="brand" class="fs-3 ms-2 text-white">Vitrine Digital</span>
+        </a>
+
+        <ul class="nav nav-pills invisible">
+            <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+        </ul>
+
+    </div>
+</div>

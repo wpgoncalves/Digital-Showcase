@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from django.contrib.messages import constants
 from environ import Env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -121,21 +122,33 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = Path.joinpath(BASE_DIR, 'static')
 
-# STATICFILES_DIRS = [
-#     ('css', Path.joinpath(STATIC_ROOT, 'css')),
-#     ('fonts', Path.joinpath(STATIC_ROOT, 'fonts')),
-#     ('img', Path.joinpath(STATIC_ROOT, 'img')),
-#     ('js', Path.joinpath(STATIC_ROOT, 'js')),
-# ]
+STATICFILES_DIRS = [
+    ('css', Path.joinpath(STATIC_ROOT, 'css')),
+    ('favicons', Path.joinpath(STATIC_ROOT, 'favicons')),
+    ('fonts', Path.joinpath(STATIC_ROOT, 'fonts')),
+    ('img', Path.joinpath(STATIC_ROOT, 'img')),
+    ('js', Path.joinpath(STATIC_ROOT, 'js')),
+]
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
 
-if len(ALLOWED_HOSTS) > 0:
+if ALLOWED_HOSTS:
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # noqa: E501
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Defines message type constants
+# https://docs.djangoproject.com/en/4.0/ref/settings/#messages
+
+MESSAGE_TAGS = {
+    constants.DEBUG: 'alert-primary',
+    constants.ERROR: 'alert-danger',
+    constants.SUCCESS: 'alert-success',
+    constants.INFO: 'alert-info',
+    constants.WARNING: 'alert-warning',
+}

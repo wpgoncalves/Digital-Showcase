@@ -1,0 +1,29 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Merienda+One&display=swap');
+
+#brand {
+    font-family: 'Merienda One', cursive;
+    font-weight: 400;
+    text-shadow: 3px 3px 4px #000;
+}
+
+.flex-basis-auto {
+    flex-basis: auto;
+}
+
+.bg-header {
+    background-color: #05c3dd;
+    box-shadow: inset 0 0 3.5em rgba(0, 0, 0, .5)
+
+}
+
+.bg-main {
+    background-color: rgba(0, 0, 0, .1);
+    box-shadow: inset 0 0 10em rgba(0, 0, 0, .5)
+  }
+
+.bg-footer {
+    background-color: #ff7d00;
+    box-shadow: inset 0 0 3.5em rgba(0, 0, 0, .5)
+
+}

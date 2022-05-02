@@ -1,0 +1,25 @@
+{% extends "base/index.html" %}
+
+{% block "title" %}Vitrine Digital{% endblock %}
+
+{% block "body" %}
+    <div class="container p-0">
+        <div class="fs-2 fw-bold text-uppercase">Choose Your Store</div>
+
+        <div class="fs-5">
+            <hr>
+            {% if object_list %}
+                {% for store in object_list %}
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a class="text-decoration-none fst-italic" href="{{ store.get_absolute_url }}">{{ store.title_establishment }}</a></li>
+                    </ul>
+                {% endfor %}
+            {% else %}
+                <ul class="list-inline">
+                    <li class="list-inline-item fst-italic">Lamentamos mas ainda não há lojas cadastradas!</li>
+                </ul>
+            {% endif %}
+            <hr>
+        </div>
+    </div>
+{% endblock %}

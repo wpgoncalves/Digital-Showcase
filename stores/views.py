@@ -1,17 +1,14 @@
-from django.shortcuts import render
+from django.views.generic import DetailView, ListView
+
+from stores.models import Stores
 
 
-def choose_store(request):
-    return render(request, 'stores/main/home.html')
+class StoresListView(ListView):
+    # model = Stores
+    template_name = 'stores/choose-store.html'
+    queryset = Stores.objects.filter(active=True)
 
 
-def store_a(request):
-    return render(request, 'stores/store_a/home.html')
-
-
-def store_b(request):
-    return render(request, 'stores/store_b/home.html')
-
-
-def store_c(request):
-    return render(request, 'stores/store_c/home.html')
+class StoresDetailView(DetailView):
+    model = Stores
+    template_name = 'stores/chosen-store.html'

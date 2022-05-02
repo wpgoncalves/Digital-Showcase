@@ -1,0 +1,16 @@
+{% extends "base/index.html" %}
+
+{% block "title" %}Vitrine Digital{% endblock %}
+
+{% block "body" %}
+    <div class="container p-0">
+        <div class="fs-2 fw-bold text-uppercase">{{ object.title_establishment }}</div>
+        <div class="fs-5">
+            <hr>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a class="text-decoration-none fst-italic" href="{% url 'choose-store' %}">Home</a></li>
+            </ul>
+            <hr>
+        </div>
+    </div>
+{% endblock %}
