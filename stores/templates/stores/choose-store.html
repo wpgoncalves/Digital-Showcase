@@ -3,23 +3,27 @@
 {% block "title" %}Vitrine Digital{% endblock %}
 
 {% block "body" %}
-    <div class="container p-0">
-        <div class="fs-2 fw-bold text-uppercase">Choose Your Store</div>
 
-        <div class="fs-5">
-            <hr>
-            {% if object_list %}
-                {% for store in object_list %}
-                    <ul class="list-inline">
-                        <li class="list-inline-item"><a class="text-decoration-none fst-italic" href="{{ store.get_absolute_url }}">{{ store.title_establishment }}</a></li>
-                    </ul>
-                {% endfor %}
-            {% else %}
-                <ul class="list-inline">
-                    <li class="list-inline-item fst-italic">Lamentamos mas ainda não há lojas cadastradas!</li>
-                </ul>
-            {% endif %}
-            <hr>
-        </div>
-    </div>
+    {% include "base/message.html" %}
+
+    {% if stores %}
+        {% if stores|length == 1 %}
+            {% for store in stores %}
+                <meta http-equiv="REFRESH" content="0;url={{ store.get_absolute_url }}">
+            {% endfor %}
+        {% else %}
+            <div class="container py-1">
+                <h2 class="text-shadow-1 ms-2">Escolha a loja que deseja visitar</h2>
+    
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 align-items-stretch g-4">
+                        {% for store in stores %}
+                            {% include "stores/store-cards.html" %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+
 {% endblock %}

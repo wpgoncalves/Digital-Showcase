@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from django.contrib.messages import constants
+from django.contrib.messages import constants as messages
 from environ import Env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Create an instance of django-environ and load environment variable values.
 # The .env file is not versioned.
 env = Env()
-# Env.read_env(Path.joinpath(BASE_DIR, '.env'))
+Env.read_env(Path.joinpath(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'django_cleanup.apps.CleanupConfig',
     'newsletter',
+    'products',
     'showcase',
     'stores',
     'about',
@@ -146,9 +147,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#messages
 
 MESSAGE_TAGS = {
-    constants.DEBUG: 'alert-primary',
-    constants.ERROR: 'alert-danger',
-    constants.SUCCESS: 'alert-success',
-    constants.INFO: 'alert-info',
-    constants.WARNING: 'alert-warning',
+    messages.DEBUG: 'alert-primary',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
+
+GROUP_STORES_IMAGES = {
+    'Doceria': ('img/group-stores/group-candy-1.jpg', 'cake'),
+    'Lanchonete': ('img/group-stores/group-snack-bars-1.jpg', 'coffee'),
+    'Pizzaria': ('img/group-stores/group-pizzerias-1.jpg', 'local_pizza'),
+    'Restaurante': ('img/group-stores/group-restaurants-1.jpg', 'restaurant'),
+    'Vestuário': ('img/group-stores/group-clothing-2.jpg', 'checkroom')
 }
