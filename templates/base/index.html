@@ -28,15 +28,35 @@
 <body>
     <div class="d-flex" style="flex-flow: column; height: 100vh; min-width: 320px;">
         <header class="flex-grow-0 flex-basis-auto">
-            {% include "base/header.html" %}
+            <div class="container-fluid border-bottom bg-header">
+                <div class="d-flex flex-wrap justify-content-center pt-3 pb-1 mb-2">
+                    {% include "base/header.html" %}
+                    
+                    {% block "nav_items" %}
+                        <ul class="nav nav-pills d-none d-md-flex d-lg-flex d-xl-flex d-xxl-flex">
+                            <li class="nav-item"><a href="{% url 'choose-store' %}" class="nav-link active" aria-current="page">Início</a></li>
+                            <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">Sobre</a></li>
+                        </ul>
+                    {% endblock %}
+                    
+                    <a class="text-decoration-none" href="#">
+                        <div class="d-flex align-items-center bg-primary rounded-circle p-2">
+                            <span class="material-symbols-rounded d-inline-block text-white fs-3">shopping_cart</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </header>
 
-        <main class="flex-grow-1 flex-basis-auto">
+        <main class="flex-grow-1 flex-basis-auto bg-main">
             {% block "body" %}{% endblock %}
         </main>
 
         <footer class="flex-grow-0 flex-basis-auto">
-            {% include "base/footer.html" %}
+            <div class="container-fluid bg-footer border-top d-flex flex-wrap justify-content-between align-items-center py-3">
+                {% include "base/footer.html" %}
+                {% block "social_media" %}{% endblock %}
+            </div>
         </footer>
     </div>
 

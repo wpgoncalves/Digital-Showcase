@@ -1,6 +1,5 @@
 from django.core.exceptions import ValidationError
 from django.db import models
-# from django.urls import reverse
 from validate_docbr import CNPJ
 
 
@@ -48,6 +47,3 @@ class Stores(models.Model):
 
     def __str__(self):
         return self.business_name
-
-    # def get_absolute_url(self):
-    #     return reverse("chosen-store", kwargs={"slug": self.slug})

@@ -1,0 +1,17 @@
+{% load static %}
+
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+            <img src="{% static 'stores/img/newsletter.jpg' %}" class="d-block mx-lg-auto img-fluid" alt="Imagem da Newsletter" width="700" height="500" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+            <h1 class="display-5 fw-bold lh-1 mb-3">Assine nossa newsletter</h1>
+            <p class="lead">Para ficar por dentro de todas as novidades e lançamentos, as melhores ofertas e promoções, assine nossa newsletter e receba no conforto de seu lar todas essas vantagens. Clique agora mesmo em inscrever-se!</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <a href="{% url 'main' %}" class="btn btn-primary btn-lg px-4 me-md-2" role="button">Inscrever-se</a>
+                {% comment %} <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Inscrever-se</button> {% endcomment %}
+            </div>
+        </div>
+    </div>
+</div>

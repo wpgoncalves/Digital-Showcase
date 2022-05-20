@@ -155,9 +155,9 @@ MESSAGE_TAGS = {
 }
 
 GROUP_STORES_IMAGES = {
-    'Doceria': ('img/group-stores/group-candy-1.jpg', 'cake'),
-    'Lanchonete': ('img/group-stores/group-snack-bars-1.jpg', 'coffee'),
-    'Pizzaria': ('img/group-stores/group-pizzerias-1.jpg', 'local_pizza'),
-    'Restaurante': ('img/group-stores/group-restaurants-1.jpg', 'restaurant'),
-    'Vestuário': ('img/group-stores/group-clothing-2.jpg', 'checkroom')
+    'Doceria': ('stores/img/group-candy.jpg', 'cake'),
+    'Lanchonete': ('stores/img/group-snack-bars.jpg', 'coffee'),
+    'Pizzaria': ('stores/img/group-pizzerias.jpg', 'local_pizza'),
+    'Restaurante': ('stores/img/group-restaurants.jpg', 'restaurant'),
+    'Vestuário': ('stores/img/group-clothing.jpg', 'checkroom')
 }

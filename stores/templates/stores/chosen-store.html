@@ -14,3 +14,21 @@
         </div>
     </div>
 {% endblock %}
+
+{% block "nav_items" %}
+    <ul class="nav nav-pills d-none d-md-flex d-lg-flex d-xl-flex d-xxl-flex">
+        <li class="nav-item"><a href="{% url 'choose-store' %}" class="nav-link" aria-current="page">Início</a></li>
+        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Vitrine</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Contatos</a></li>
+        <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">Sobre</a></li>
+    </ul>
+{% endblock %}
+
+{% block "social_media" %}
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-none d-md-flex d-lg-flex d-xl-flex d-xxl-flex">
+        <li class="mx-2"><a class="text-white fs-4" href="#"><i class="bi bi-twitter"></i></a></li>
+        <li class="mx-2"><a class="text-white fs-4" href="#"><i class="bi bi-instagram"></i></a></li>
+        <li class="mx-2"><a class="text-white fs-4" href="#"><i class="bi bi-facebook"></i></a></li>
+        <li class="mx-2"><a class="text-white fs-4" href="#"><i class="bi bi-youtube"></i></a></li>
+    </ul>
+{% endblock %}

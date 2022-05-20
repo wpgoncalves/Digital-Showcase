@@ -26,4 +26,15 @@ class StoresListView(ListView):
 
 class StoresDetailView(DetailView):
     model = Stores
+    context_object_name = 'stores'
     template_name = 'stores/chosen-store.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        print(context)
+        return context
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        print(queryset)
+        return queryset

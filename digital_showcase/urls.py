@@ -14,7 +14,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('mall/', include('stores.urls')),
     path('', RedirectView.as_view(url='mall/')),
-    path('main/', main, name='main')
+    path('main/', main, name='main'),
+    path('about/', include('about.urls'))
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
