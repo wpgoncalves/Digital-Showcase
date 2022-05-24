@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Create an instance of django-environ and load environment variable values.
 # The .env file is not versioned.
 env = Env()
-# env.read_env(Path.joinpath(BASE_DIR, '.env'))
+env.read_env(Path.joinpath(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -126,7 +126,6 @@ STATIC_ROOT = Path.joinpath(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     ('css', Path.joinpath(STATIC_ROOT, 'css')),
     ('favicons', Path.joinpath(STATIC_ROOT, 'favicons')),
-    ('fonts', Path.joinpath(STATIC_ROOT, 'fonts')),
     ('img', Path.joinpath(STATIC_ROOT, 'img')),
     ('js', Path.joinpath(STATIC_ROOT, 'js')),
 ]
