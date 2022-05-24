@@ -1,3 +1,6 @@
+# Migrations files
+migrations/000*.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
