@@ -41,6 +41,10 @@
     color: #46718c;
 }
 
+.text-justify {
+    text-align: justify !important;
+}
+
 /* .text-green-card {
     color: #009a6f;
 } */

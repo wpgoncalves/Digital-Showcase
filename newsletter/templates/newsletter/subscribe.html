@@ -1,0 +1,38 @@
+{% extends 'base/index.html' %}
+
+{% block "title" %}Vitrine Digital{% endblock %}
+
+{% block "body" %}
+
+    <!-- Inclusion of Bootstrap alert messages -->
+    {% include "base/message.html" %}
+
+    <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+        <div class="row align-items-center py-5">
+            <div class="col-lg-7 text-center text-lg-start">
+                <h1 class="display-4 fw-bold lh-1 mb-3">Assinando nossa newsletter...</h1>
+                <p class="col-lg-10 fs-4">Você terá acesso em primeira mão aos lançamentos e novidades, as melhores ofertas e promoções das lojas participantes da Vitrine Digital. Não perca tempo! Cadastre-se!</p>
+            </div>
+            
+            <div class="col-md-10 mx-auto col-lg-5">
+                <form class="p-4 p-md-5 border rounded-3 bg-light" method="POST" action="{% url 'validate_subscribe' %}">{% csrf_token %}
+                    <div class="form-floating mb-3">
+                        {% comment %} <input type="text" class="form-control text-capitalize" id="floatingName" placeholder="Nome completo" name="name" required>
+                        <label for="floatingName">Nome completo</label> {% endcomment %}
+                        {{ form.name }}
+                        {{ form.name.label_tag }}
+                    </div>
+                    <div class="form-floating mb-3">
+                        {% comment %} <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" required>
+                        <label for="floatingInput">Endereço de email</label> {% endcomment %}
+                        {{ form.email }}
+                        {{ form.email.label_tag }}
+                    </div>
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">Cadastre-se</button>
+                    <hr class="my-4">
+                    <small class="text-muted">Ao clicar em Cadastre-se, você concorda com os termos de uso.</small>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

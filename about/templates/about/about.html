@@ -1,23 +1,33 @@
 {% extends "base/index.html" %}
 
+{% load static %}
+
 {% block "title" %}Sobre{% endblock %}
 
 {% block "body" %}
-	<div class="container-fluid p-0 bg-dark text-white">
-		<br>
-		<h1 style="text-align: center;">Quem somos nós</h1>
-		<br>
-		<p style="text-align: justify;">
-				No início de 2020, o novo coronavírus espalhou-se sobre o mundo inteiro, gerando uma pandemia sem precedentes.
-				Tal acontecimento obrigou todos os países a implantarem em seus territórios estado de quarentena, a fim de minimizar o contágio e,
-				consequentemente, os óbitos por COVID-19. Devido as variantes, tal situação praticamente se estende pelo ano seguinte.</p>
-		<p style="text-align: justify;">Por outro lado, os pequenos e médios comerciantes, cuja maioria não possui meios digitais viáveis para a
-				realização de seus negócios, tiveram um prejuízo inigualável, afetando seriamente suas economias e a do país como um todo. Além disso,
-				os mesmos perderam cada vez mais espaço para os grandes comerciantes, que possuem seus próprios sites de e-commerce.</p>
-		<p style="text-align: justify;">Então, no segundo semestre de 2021, um grupo de sete alunos do polo de Lorena da UNIVESP, seriamente preocupados
-				com a situação dos comerciantes de sua região, condoendo-se deles, decidem auxiliá-los com a criação do site Varejo Digital, onde tais
-				comerciantes podem divulgar suas marcas, produtos e, assim, recuperarem sua economia. São eles: Adriana, João Paulo, Leilane, Luiz
-				Henrique e Wesley.</p>
-		<br>
+	<div class="container-sm my-5 shadow">
+		<div class="px-4 py-5 my-5 text-center">
+			<img class="d-block mx-auto mb-4" src="{% static 'img/brand.png' %}" alt="Imagem da Brand" width="120" height="120">
+			<h1 class="display-5 fw-bold">Quem somos nós</h1>
+			<div class="col-lg-10 mx-auto">
+				<p class="lead mb-4 text-justify">No início de 2020, o novo coronavírus espalhou-se sobre o mundo inteiro, gerando uma pandemia sem precedentes.
+					Tal acontecimento obrigou todos os países a implantarem em seus territórios estado de quarentena, a fim de minimizar o contágio e,
+					consequentemente, os óbitos por COVID-19. Devido as variantes, tal situação praticamente se estende pelo ano seguinte.</p>
+				<p class="lead mb-4 text-justify">Por outro lado, os pequenos e médios comerciantes, cuja maioria não possui meios digitais viáveis para a
+					realização de seus negócios, tiveram um prejuízo inigualável, afetando seriamente suas economias e a do país como um todo. Além disso,
+					os mesmos perderam cada vez mais espaço para os grandes comerciantes, que possuem seus próprios sites de e-commerce.</p>
+				<p class="lead mb-4 text-justify">Então, no segundo semestre de 2021, um grupo de sete alunos do polo de Lorena da UNIVESP, seriamente preocupados
+					com a situação dos comerciantes de sua região, condoendo-se deles, decidem auxiliá-los com a criação do site Varejo Digital, onde tais
+					comerciantes podem divulgar suas marcas, produtos e, assim, recuperarem sua economia. São eles: Adriana, João Paulo, Leilane, Luiz
+					Henrique e Wesley.</p>
+			</div>
+		</div>
 	</div>
+{% endblock %}
+
+{% block "nav_items" %}
+    <ul class="nav nav-pills d-none d-md-flex d-lg-flex d-xl-flex d-xxl-flex">
+        <li class="nav-item"><a href="{% url 'choose-store' %}" class="nav-link">Início</a></li>
+        <li class="nav-item"><a href="{% url 'about' %}" class="nav-link active" aria-current="page">Sobre</a></li>
+    </ul>
 {% endblock %}
