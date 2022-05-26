@@ -22,9 +22,7 @@ DEBUG = env('DJANGO_DEBUG', bool, False)
 
 ALLOWED_HOSTS = env('DJANGO_ALLOWED_HOSTS', list, [])
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.admin',
@@ -133,7 +131,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = 'media/'
 MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
 
-if ALLOWED_HOSTS:
+if not DEBUG:
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # noqa: E501
 
