@@ -25,7 +25,7 @@
     {% if stores %}
         {% if stores|length == 1 %}
             {% for store in stores %}
-                <meta http-equiv="REFRESH" content="0;url={{ store.get_absolute_url }}">
+                <meta http-equiv="REFRESH" content="0;url={% url 'chosen-store' slug=store.slug %}">
             {% endfor %}
         {% else %}
             <div class="container-fluid p-4">

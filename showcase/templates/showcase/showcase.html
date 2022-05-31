@@ -3,16 +3,15 @@
 {% block "title" %}Vitrine Digital{% endblock %}
 
 {% block "body" %}
-    <div class="container p-0">
-        <div class="fs-2 fw-bold text-uppercase">{{ store.title_establishment }} - {{ store.cnpj }}</div>
-        <div class="fs-5">
-            <hr>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a class="text-decoration-none fst-italic" href="{% url 'choose-store' %}">Home</a></li>
-            </ul>
-            <hr>
-        </div>
+
+    <!-- Inclusion of Bootstrap alert messages -->
+    {% include "base/message.html" %}
+
+    <!-- Inclusion of Bootstrap carousel for showcasing highlights from participating stores -->
+    <div class="container-fluid p-0">
+        {% include "showcase/showcase-carousel.html" %}
     </div>
+
 {% endblock %}
 
 {% block "nav_items" %}

@@ -1,5 +1,12 @@
 {% if messages %}
-    {% for message in messages %}
-        <div class="alert {{message.tags}} alert_project">{{message}}</div>
-    {% endfor %}
+    <div class="modal fade" id="modalAlert" tabindex="-1" aria-labelledby="modalAlertLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            {% for message in messages %}
+                <div class="alert {{message.tags}} alert_project alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="modal alert" aria-label="Fechar"></button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endif %}

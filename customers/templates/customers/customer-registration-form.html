@@ -1,0 +1,97 @@
+{% extends "base/index.html" %}
+
+{% load static %}
+
+{% block "title" %}Vitrine Digital{% endblock %}
+
+{% block "body" %}
+
+    <!-- Inclusion of Bootstrap alert messages -->
+    {% include "base/message.html" %}
+
+    <div class="container p-5">
+        <h5 class="fw-bold lh-1 mb-3">Dados Pessoais:</h5>
+
+        <form class="row g-3 align-items-center" id="customers_form" method="POST" action="{% url 'validate_customer_register' %}">{% csrf_token %}
+
+            <div class="form-floating col-md-auto col-lg-8">
+                <input type="text" class="form-control text-capitalize" name="name" id="name" placeholder="Nome"
+                    aria-label="nome" required autofocus>
+                <label for="name" class="form-label col-form-label">Nome:</label>
+            </div>
+
+            <div class="form-floating col-md-auto col-lg-4">
+                <input type="text" class="form-control text-capitalize" name="lastname" id="lastname"
+                    placeholder="Sobrenome" aria-label="sobrenome" required>
+                <label for="lastname" class="form-label col-form-label">Sobrenome:</label>
+            </div>
+
+            <div class="form-floating col-md-auto col-lg-2">
+                <select name="gender" id="gender" class="form-select" aria-label="selecione o gênero">
+                    <option selected value="male">Masculino</option>
+                    <option value="female">Feminino</option>
+                </select>
+                <label for="gender" class="form-label col-form-label">Gênero:</label>
+            </div>
+
+            <div class="form-floating col-md-auto col-lg-3">
+                <select name="kind" id="kind" class="form-select" aria-label="selecione o tipo de pessoa">
+                    <option selected value="cpf">Pessoa física</option>
+                    <option value="cnpj">Pessoa jurídica</option>
+                </select>
+                <label for="kind" class="form-label col-form-label">Tipo:</label>
+            </div>
+
+            <div class="form-floating col-md-auto col-lg-4">
+                <input type="text" class="form-control" name="cpf_cnpj" id="cpf_cnpj"
+                    placeholder="Digite seu CPF ou CNPJ" aria-label="digite o cpf ou cnpj" required>
+                <label for="cpf_cnpj" class="form-label col-form-label">CPF/CNPJ:</label>
+            </div>
+
+            <div class="form-floating col-md-auto col-lg-3">
+                <input type="date" class="form-control" name="birthdate" id="birthdate" placeholder="Data de nascimento"
+                    aria-label="data de nascimento" required>
+                <label for="birthdate" class="form-label col-form-label">Data de nascimento:</label>
+            </div>
+
+            <div class="form-floating col-md-auto col-lg-8">
+                <input type="email" class="form-control" name="email" id="email"
+                    placeholder="Digite um endereço de e-mail válido" aria-label="digite um endereço de e-mail válido">
+                <label for="email" class="form-label col-form-label">E-mail:</label>
+            </div>
+
+            <div class="form-floating col-md-auto col-lg-4">
+                <input type="text" class="form-control sp_celphones" name="phone" id="phone"
+                    placeholder="Digite seu telefone" aria-label="digite seu número de telefone">
+                <label for="phone" class="form-label col-form-label">Telefone:</label>
+            </div>
+
+            <div class="col-md-auto">
+                <button class="btn btn-outline-secondary btn-lg px-5" type="button">Limpar</button>
+            </div>
+
+            <div class="col-md-auto">
+                <button class="btn btn-primary btn-lg px-5" type="submit">Enviar</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block "script" %}
+    <script src="{% static 'js/jquery.mask.min.js' %}"></script>
+    <script src="{% static 'customers/js/script.js' %}"></script>
+{% endblock %}
+
+{% block "nav_items" %}
+    <li class="nav-item"><a href="{% url 'choose-store' %}" class="nav-link" aria-current="page">Início</a></li>
+    <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Vitrine</a></li>
+    <li class="nav-item"><a href="#" class="nav-link">Contatos</a></li>
+    <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">Sobre</a></li>
+{% endblock %}
+
+{% block "social_media" %}
+    <li class="mx-2"><a class="text-white fs-4" href="#"><i class="bi bi-twitter"></i></a></li>
+    <li class="mx-2"><a class="text-white fs-4" href="#"><i class="bi bi-instagram"></i></a></li>
+    <li class="mx-2"><a class="text-white fs-4" href="#"><i class="bi bi-facebook"></i></a></li>
+    <li class="mx-2"><a class="text-white fs-4" href="#"><i class="bi bi-youtube"></i></a></li>
+{% endblock %}

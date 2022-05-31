@@ -1,8 +1,33 @@
 {% load static %}
 
-<a href="{% url "choose-store" %}" class="d-flex align-items-center mb-md-0 me-md-auto text-decoration-none">
-            
-  <img class="d-inline-block align-text-top" src="{% static "img/brand.png" %}" alt="Brand" width="46" height="46">
+<div class="container-fluid">
+    <a href="{% url "choose-store" %}" class="navbar-brand d-flex" style="font-size: 28px !important;">
+        <img class="d-inline-block align-text-top d-none d-sm-flex" src="{% static "img/brand.png" %}" alt="Brand" width="46" height="46">
+        <span id="brand" class="ms-2 text-white">Vitrine Digital</span>
+    </a>
 
-  <span id="brand" class="fs-3 ms-2 text-white">Vitrine Digital</span>
-</a>
+    <div class="d-flex flex-row flex-nowrap">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+            aria-controls="navbarMain" aria-expanded="false" aria-label="Alternar de navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <button class="navbar-toggler rounded-circle ms-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#orderItems" 
+            aria-controls="orderItems">
+            <span class="material-symbols-rounded pt-1">shopping_cart</span>
+        </button>
+    </div>
+</div>
+
+<!-- Offcanvas Bootstrap - Order Items -->
+<div class="offcanvas offcanvas-end bg-header" tabindex="-1" id="orderItems" aria-labelledby="orderItemsLabel">
+
+    <div class="offcanvas-header">
+        <h6 class="offcanvas-title display-6" id="orderItemsLabel">Itens do pedido</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus, magnam blanditiis velit sunt et ullam architecto nobis eum modi illum a cum accusamus dolore hic. Ullam incidunt eos aliquid repellendus.</p>
+    </div>
+</div>

@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'django_cleanup.apps.CleanupConfig',
     'newsletter',
+    'customers',
     'products',
     'showcase',
     'stores',
