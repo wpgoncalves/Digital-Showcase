@@ -1,3 +1,4 @@
+from customers.models import Adresses, Emails, Phones
 from django.core.exceptions import ValidationError
 from django.db import models
 from validate_docbr import CNPJ
@@ -33,6 +34,29 @@ class Stores(models.Model):
                              choices=GroupChoices.choices,
                              max_length=15)
 
+    address = models.OneToOneField(Adresses,
+                                   verbose_name='Endereço',
+                                   on_delete=models.PROTECT,
+                                   blank=True,
+                                   null=True)
+
+    address_number = models.PositiveIntegerField(verbose_name='Número',
+                                                 blank=True,
+                                                 null=True)
+
+    address_complement = models.CharField(verbose_name='Complemento',
+                                          max_length=120,
+                                          blank=True,
+                                          null=True)
+
+    phones = models.ManyToManyField(Phones,
+                                    verbose_name='Telefones',
+                                    blank=True)
+
+    emails = models.ManyToManyField(Emails,
+                                    verbose_name='E-mails',
+                                    blank=True)
+
     slug = models.SlugField(verbose_name='Slug',
                             max_length=50,
                             unique=True)
@@ -47,3 +71,32 @@ class Stores(models.Model):
 
     def __str__(self):
         return self.business_name
+
+
+class SocialNetworks(models.Model):
+
+    class MediaChoices(models.TextChoices):
+        FACEBOOK = 'Facebook', 'Facebook'
+        INSTAGRAM = 'Instagram', 'Instagram'
+        TWITTER = 'Twitter', 'Twitter'
+        WHATSAPP = 'Whatsapp', 'Whatsapp'
+        YOUTUBE = 'Youtube', 'Youtube'
+
+    store_holder = models.ForeignKey(Stores,
+                                     on_delete=models.CASCADE,
+                                     verbose_name='Loja Detentora')
+
+    media = models.CharField(verbose_name='Rede Social',
+                             choices=MediaChoices.choices,
+                             max_length=10)
+
+    url = models.URLField(verbose_name='URL',
+                          unique=True)
+
+    class Meta:
+        ordering = ['store_holder']
+        verbose_name = 'Rede Social'
+        verbose_name_plural = 'Redes Sociais'
+
+    def __str__(self):
+        return self.url

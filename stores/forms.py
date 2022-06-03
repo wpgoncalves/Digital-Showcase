@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.text import slugify
 
-from stores.models import Stores
+from stores.models import SocialNetworks, Stores
 
 
 class StoresForm(forms.ModelForm):
@@ -22,4 +22,11 @@ class StoresForm(forms.ModelForm):
 
     class Meta:
         model = Stores
+        fields = '__all__'
+
+
+class SocialNetworksForm(forms.ModelForm):
+
+    class Meta:
+        model = SocialNetworks
         fields = '__all__'

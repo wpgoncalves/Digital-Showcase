@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.hero-image {
+    height: 36rem;
+    background-color: #cccccc;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: brightness(0.50) opacity(0.8);
+}
+  
+.hero-text {
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: brightness(1) opacity(1);
+}

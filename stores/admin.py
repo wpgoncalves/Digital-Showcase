@@ -1,8 +1,8 @@
 from django.contrib import admin
 from products.models import Products
 
-from stores.forms import StoresForm
-from stores.models import Stores
+from stores.forms import SocialNetworksForm, StoresForm
+from stores.models import SocialNetworks, Stores
 
 
 class ProductsInLine(admin.TabularInline):
@@ -28,8 +28,11 @@ class StoresAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields':
-            ('cnpj', 'business_name', 'title_establishment', 'group', 'slug',
-             'active'),
+            (
+                'cnpj', 'business_name', 'title_establishment', 'group',
+                ('address', 'address_number', 'address_complement'),
+                ('phones', 'emails'), 'slug', 'active'
+            ),
             'description':
             '<h4><b>*Os campos em negrito são de preenchimento obrigatório.</b></h4>',  # noqa: E501
         }),
@@ -37,3 +40,19 @@ class StoresAdmin(admin.ModelAdmin):
 
     class Media:
         js = ('js/jquery.mask.min.js', 'stores/js/script.js')
+
+
+@admin.register(SocialNetworks)
+class SocialNetworksAdmin(admin.ModelAdmin):
+    form = SocialNetworksForm
+    list_display = ('store_holder', 'media', 'url')
+    search_fields = ('store_holder', 'url')
+    list_filter = ('media',)
+    fieldsets = (
+        (None, {
+            'fields':
+            ('store_holder', ('media', 'url')),
+            'description':
+            '<h4><b>*Os campos em negrito são de preenchimento obrigatório.</b></h4>',  # noqa: E501
+        }),
+    )
