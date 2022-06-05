@@ -1,6 +1,12 @@
 {% extends "base/index.html" %}
 
-{% block "title" %}Vitrine Digital{% endblock %}
+{% load static %}
+
+{% block "title" %}Vitrine Digital - desativar{% endblock %}
+
+{% block "style" %}
+    <link rel="stylesheet" type="text/css" href="{% static 'stores/css/store-stylesheet.css' %}">
+{% endblock %}
 
 {% block "body" %}
     <div class="container p-0">

@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+:root {
+    /* --bs-info-banner-bg-rgb: 217, 251, 32; */
+    --bs-info-banner-bg-rgb: 67, 0, 60;
+    --bs-info-banner-text-rgb: 70, 113, 140;
+}
+
+.text-info-banner {
+    color: rgba(var(--bs-info-banner-text-rgb), 1)
+}
+
+.bg-info-banner {
+    background-color: rgba(var(--bs-info-banner-bg-rgb), 1)
+}
+
+.hero-image {
+    height: 36rem;
+    background-color: #cccccc;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: brightness(0.75) opacity(1);
+}
+  
+.hero-text {
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: brightness(1) opacity(1);
+}
+
+#store-card {
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+#store-card:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    opacity: 1;
+}

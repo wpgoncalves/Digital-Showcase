@@ -1,9 +1,14 @@
 {% extends 'base/index.html' %}
 
+<!-- {% load static %} -->
+
+<!-- {% block "style" %}{% endblock %} -->
+
 {% block "title" %}Vitrine Digital{% endblock %}
 
-{% block "body" %}
+<!-- {% block "nav_items" %}{% endblock %} -->
 
+{% block "body" %}
     <!-- Inclusion of Bootstrap alert messages -->
     {% include "base/message.html" %}
 
@@ -35,4 +40,10 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+<!-- {% block "social_media" %}{% endblock %} -->
+
+{% block "script" %}
+    <script src="{% static 'js/modal.alert.js' %}"></script>
 {% endblock %}

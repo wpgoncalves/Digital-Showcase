@@ -28,18 +28,16 @@ class Stores(models.Model):
                                      max_length=100)
 
     title_establishment = models.CharField(verbose_name='Fantasia',
-                                           max_length=27,
+                                           max_length=30,
                                            unique=True)
 
     group = models.CharField(verbose_name='Grupo',
                              choices=GroupChoices.choices,
                              max_length=15)
 
-    address = models.ForeignKey(Adresses,
-                                on_delete=models.CASCADE,
-                                verbose_name='Endereço',
-                                blank=True,
-                                null=True)
+    address = models.ManyToManyField(Adresses,
+                                     verbose_name='Endereço',
+                                     blank=True)
 
     address_number = models.PositiveIntegerField(verbose_name='Número',
                                                  blank=True,
@@ -58,18 +56,22 @@ class Stores(models.Model):
                                     verbose_name='E-mails',
                                     blank=True)
 
-    social_networks = models.ForeignKey(SocialNetworks,
-                                        on_delete=models.CASCADE,
-                                        verbose_name='Redes Sociais',
-                                        blank=True,
-                                        null=True)
+    social_networks = models.ManyToManyField(SocialNetworks,
+                                             verbose_name='Redes Sociais',
+                                             blank=True)
 
     slug = models.SlugField(verbose_name='Slug',
-                            max_length=50,
+                            max_length=30,
                             unique=True)
 
     active = models.BooleanField(verbose_name='Ativa',
                                  default=True)
+
+    recorded = models.DateTimeField(verbose_name='Gravado em',
+                                    auto_now_add=True)
+
+    updated = models.DateTimeField(verbose_name='Atualizado em',
+                                   auto_now=True)
 
     class Meta:
         ordering = ['business_name']

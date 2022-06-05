@@ -2,34 +2,25 @@
 
 {% load static %}
 
-{% block "title" %}Vitrine Digital{% endblock %}
-
 {% block "style" %}
-    <link rel="stylesheet" href="{% static 'stores/css/style-stores.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'stores/css/store-stylesheet.css' %}">
 {% endblock %}
 
-{% block "body" %}
+{% block "title" %}Vitrine Digital{% endblock %}
 
+<!-- {% block "nav_items" %}{% endblock %} -->
+
+{% block "body" %}
     <!-- Inclusion of Bootstrap alert messages -->
     {% include "base/message.html" %}
-    
-    <!-- Inclusion of Bootstrap carousel for showcasing highlights from participating stores -->
-    <!-- <div class="container-fluid p-0">
-        {% include "stores/store-carousel.html" %}
-    </div> -->
 
-    <!-- Vitrine - Slogan -->
+    <!-- Showcase - Slogan -->
     <section>
-        <div class="hero-image position-relative text-white text-shadow-1" style="background-image: url('{% static "img/showcase-slogan3.png" %}');">
-            <div class="hero-text position-absolute text-center">
-                {% comment %} <h1 class="display-1 fw-bold">Vitrine Digital</h1> {% endcomment %}
-                {% comment %} <h3 class="display-6">O melhor da região na sua Vitrine</h3> {% endcomment %}
-            </div>
-        </div>
+        <div class="hero-image position-relative" style="background-image: url('{% static "img/showcase-slogan3.png" %}');"></div>
     </section>
     
     <!-- Information banner -->
-    <div class="container-fluid d-flex justify-content-center bg-info-banner text-info-banner p-4 gap-3 border-top border-bottom border-2">
+    <div class="container-fluid d-flex justify-content-center bg-info-banner text-white p-4 gap-3">
         <div class="d-flex align-items-center pt-1">
             <span class="material-symbols-rounded fs-1 text-shadow-1 m-0">local_mall</span>
         </div>
@@ -44,7 +35,7 @@
             {% endfor %}
         {% else %}
             <div class="container-fluid p-4">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 align-items-stretch g-4">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 align-items-stretch g-4">
                     {% for store in stores %}
                         {% include "stores/store-cards.html" %}
                     {% endfor %}
@@ -55,5 +46,10 @@
 
     <!-- Newsletter subscription section  -->
     {% include "stores/store_newsletter.html" %}
+{% endblock %}
 
+<!-- {% block "social_media" %}{% endblock %} -->
+
+{% block "script" %}
+    <script src="{% static 'js/modal.alert.js' %}"></script>
 {% endblock %}

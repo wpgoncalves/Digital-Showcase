@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.carousel-inner > .carousel-item > img {
+    height: 36rem; 
+}
+
+#product-card {
+    transition: all 0.3s ease;
+}
+
+#product-card:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}

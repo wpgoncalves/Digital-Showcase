@@ -1,18 +1,12 @@
 {% extends "base/index.html" %}
 
-{% block "title" %}Vitrine Digital{% endblock %}
+{% load static %}
 
-{% block "body" %}
-
-    <!-- Inclusion of Bootstrap alert messages -->
-    {% include "base/message.html" %}
-
-    <!-- Inclusion of Bootstrap carousel for showcasing highlights from participating stores -->
-    <div class="container-fluid p-0">
-        {% include "showcase/showcase-carousel.html" %}
-    </div>
-
+{% block "style" %}
+    <link rel="stylesheet" type="text/css" href="{% static 'showcase/css/showcase-stylesheet.css' %}">
 {% endblock %}
+
+{% block "title" %}Vitrine Digital{% endblock %}
 
 {% block "nav_items" %}
     <li class="nav-item"><a href="{% url 'choose-store' %}" class="nav-link" aria-current="page">Início</a></li>
@@ -21,9 +15,27 @@
     <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">Sobre</a></li>
 {% endblock %}
 
+{% block "body" %}
+    <!-- Inclusion of Bootstrap alert messages -->
+    {% include "base/message.html" %}
+
+    <!-- Added Bootstrap carousel to show selected store highlights -->
+    <section class="container-fluid p-0" title="showcase-carousel">
+        {% include "showcase/showcase-carousel.html" %}
+    </section>
+
+    <section class="container p-0 my-4" title="showcase-products-card">
+        {% include "showcase/showcase-product-card.html" %}
+    </section>
+{% endblock %}
+
 {% block "social_media" %}
     <li class="mx-2"><a class="text-white fs-4" href="#"><i class="bi bi-twitter"></i></a></li>
     <li class="mx-2"><a class="text-white fs-4" href="#"><i class="bi bi-instagram"></i></a></li>
     <li class="mx-2"><a class="text-white fs-4" href="#"><i class="bi bi-facebook"></i></a></li>
     <li class="mx-2"><a class="text-white fs-4" href="#"><i class="bi bi-youtube"></i></a></li>
+{% endblock %}
+
+{% block "script" %}
+    <script src="{% static 'js/modal.alert.js' %}"></script>
 {% endblock %}

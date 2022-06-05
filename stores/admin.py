@@ -20,7 +20,8 @@ class ProductsInLine(admin.TabularInline):
 class StoresAdmin(admin.ModelAdmin):
     form = StoresForm
     inlines = [ProductsInLine]
-    list_display = ('business_name', 'cnpj', 'group', 'active')
+    list_display = ('business_name', 'cnpj', 'group',
+                    'active', 'recorded', 'updated')
     search_fields = ('cnpj', 'business_name')
     list_filter = ('active', 'group')
     # list_editable = ('active',)

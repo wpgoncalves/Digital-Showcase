@@ -19,17 +19,17 @@
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicons/favicon.ico' %}">
 
     <!-- Cascading Style Sheet - CSS (Bootstrap, Project) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="{% static 'css/stylesheet.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/stylesheet.css' %}">
     {% block "style" %}{% endblock %}
 
     <title>{% block "title" %}{% endblock %}</title>
 </head>
 
-<body>
-    <div class="d-flex vh-100 flex-column flex-nowrap" style="min-width: 20rem;">
+<body class="d-flex vh-100 flex-column flex-nowrap" style="min-width: 20rem;">
+    {% comment %} <div class="d-flex vh-100 flex-column flex-nowrap" style="min-width: 20rem;"> {% endcomment %}
         <header class="flex-grow-0 flex-basis-auto">
-            <nav class="navbar navbar-dark bg-header" aria-label="Barra de navegação">
+            <nav class="navbar navbar-dark bg-header shadow-inset" aria-label="Barra de navegação">
                 {% include "base/header.html" %}
 
                 <div class="collapse navbar-collapse" id="navbarMain">
@@ -48,7 +48,7 @@
         </main>
 
         <footer class="flex-grow-0 flex-basis-auto">
-            <div class="container-fluid bg-footer border-top d-flex flex-wrap justify-content-between align-items-center py-3">
+            <div class="container-fluid bg-footer shadow-inset border-top d-flex flex-wrap justify-content-between align-items-center py-3">
                 {% include "base/footer.html" %}
 
                 <ul class="nav col-md-4 justify-content-end list-unstyled d-none d-md-flex d-lg-flex d-xl-flex d-xxl-flex">
@@ -56,12 +56,11 @@
                 </ul>
             </div>
         </footer>
-    </div>
+    {% comment %} </div> {% endcomment %}
 
     <!-- JavaScript - JS (Bootstrap, JQuery, Query Mask Plugin, Project)-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="{% static 'js/modal.alert.js' %}"></script>
     {% block "script" %}{% endblock  %}
 </body>
 

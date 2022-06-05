@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from customers.forms import AdressesForm, CustomersForm, EmailsForm, PhonesForm
-from customers.models import Adresses, Customers, Emails, Phones
+from customers.forms import CustomersForm
+from customers.models import Customers
 
 
 @admin.register(Customers)
@@ -25,54 +25,3 @@ class CustomersAdmin(admin.ModelAdmin):
 
     class Media:
         js = ('js/jquery.mask.min.js', 'customers/js/script.js')
-
-
-@admin.register(Adresses)
-class AdressesAdmin(admin.ModelAdmin):
-    form = AdressesForm
-    list_display = ('__str__', 'district', 'cep', 'city', 'state')
-    search_fields = ('cep', 'address')
-    list_filter = ('type', 'city', 'district', 'state')
-    fieldsets = (
-        (None, {
-            'fields': ('cep', ('type', 'address'),
-                       ('district', 'city', 'state')),
-            'description':
-            '<h4><b>*Os campos em negrito são obrigatórios.</b></h4>',
-        }),
-    )
-
-    class Media:
-        js = ('js/jquery.mask.min.js', 'customers/js/script.js')
-
-
-@admin.register(Phones)
-class PhonesAdmin(admin.ModelAdmin):
-    form = PhonesForm
-    list_display = ('type', 'number')
-    search_fields = ('number',)
-    list_filter = ('type',)
-    fieldsets = (
-        (None, {
-            'fields': ('number', 'type', 'comments'),
-            'description':
-            '<h4><b>*Os campos em negrito são obrigatórios.</b></h4>',
-        }),
-    )
-
-    class Media:
-        js = ('js/jquery.mask.min.js', 'customers/js/script.js')
-
-
-@admin.register(Emails)
-class EmailsAdmin(admin.ModelAdmin):
-    form = EmailsForm
-    list_display = ('email',)
-    search_fields = ('email',)
-    fieldsets = (
-        (None, {
-            'fields': ('email', ),
-            'description':
-            '<h4><b>*Os campos em negrito são obrigatórios.</b></h4>',
-        }),
-    )
