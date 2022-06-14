@@ -9,6 +9,9 @@ class Products(models.Model):
                             verbose_name='Nome',
                             unique=True)
 
+    brand = models.CharField(max_length=30,
+                             verbose_name='Marca')
+
     ean13code = models.CharField(max_length=13,
                                  verbose_name='Código EAN-13',
                                  unique=True,
@@ -22,6 +25,10 @@ class Products(models.Model):
     sale = models.BooleanField(verbose_name='Promoção',
                                default=False)
 
+    full_price = models.DecimalField(verbose_name='Preço Cheio',
+                                     max_digits=8,
+                                     decimal_places=2)
+
     discount = models.PositiveSmallIntegerField(verbose_name='Desconto',
                                                 default=0,
                                                 validators=[
@@ -29,15 +36,13 @@ class Products(models.Model):
                                                         limit_value=100)
                                                 ])
 
-    value = models.DecimalField(verbose_name='Valor',
-                                max_digits=8,
-                                decimal_places=2)
+    discount_price = models.DecimalField(verbose_name='Preço com Desconto',
+                                         max_digits=8,
+                                         decimal_places=2)
 
-    amount_stock = models.IntegerField(verbose_name='Qtde em Estoque')
-
-    store_holder = models.ForeignKey(Stores,
-                                     on_delete=models.CASCADE,
-                                     verbose_name='Loja Detentora')
+    owner_store = models.ForeignKey(Stores,
+                                    on_delete=models.CASCADE,
+                                    verbose_name='Loja Detentora')
 
     discontinued = models.BooleanField(verbose_name='Descontinuado',
                                        default=False)
@@ -78,6 +83,12 @@ class ProductImages(models.Model):
         ordering = ['product']
         verbose_name = 'Imagem de Produto'
         verbose_name_plural = 'Imagens de Produto'
+
+        constraints = [
+            models.UniqueConstraint(
+                fields=['product', 'type'], name='unique_cover_image_product'
+            )
+        ]
 
     def __str__(self):
         return str(self.product)

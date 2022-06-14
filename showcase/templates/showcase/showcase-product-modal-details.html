@@ -1,0 +1,56 @@
+<div id="detailsModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-hidden="true" aria-labelledby="detailsModal" aria-describedby="Modal com informações detalhadas do produto selecionado">
+    <div class="modal-dialog modal-xl modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="d-flex flex-column">
+                    <h5 class="modal-title display-6">Camiseta Regata Masculina</h5>
+                    <h6 class="modal-subtitle mb-2 text-muted">Hering</h6>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="row row-cols-1 row-cols-sm-1">
+                    <div class="col col-lg-5">
+                        <!-- Carousel -->
+                        <div id="carouselDetailsModal" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                            </div>
+
+                            <button class="carousel-control-prev" type="button"
+                                data-bs-target="#carouselDetailsModal" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Anterior</span>
+                            </button>
+
+                            <button class="carousel-control-next" type="button"
+                                data-bs-target="#carouselDetailsModal" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Próximo</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col col-lg-7">
+                        <div class="d-flex align-items-center justify-content-end border-bottom pb-3">
+                            <small class="me-2 text-muted">Acessibilidade</small>
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Botões de acessibilidade para aumentar e diminuir a fonte">
+                                <button type="button" class="btn btn-outline-primary" onclick="decreaseFont()">A -</button>
+                                <button type="button" class="btn btn-outline-primary" onclick="increaseFont()">A +</button>
+                            </div>
+                        </div>
+
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa provident sapiente,
+                            pariatur
+                            dolores ullam atque suscipit esse in illum molestiae consequatur rem voluptas! Omnis
+                            repellendus
+                            nobis aperiam? Totam, quo obcaecati.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer d-none d-sm-none d-md-flex d-lg-flex d-xl-flex d-xxl-flex">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>

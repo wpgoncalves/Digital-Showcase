@@ -11,6 +11,7 @@
 {% block "nav_items" %}
     <li class="nav-item"><a href="{% url 'choose-store' %}" class="nav-link" aria-current="page">Início</a></li>
     <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Vitrine</a></li>
+    <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
     <li class="nav-item"><a href="#" class="nav-link">Contatos</a></li>
     <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">Sobre</a></li>
 {% endblock %}
@@ -19,23 +20,32 @@
     <!-- Inclusion of Bootstrap alert messages -->
     {% include "base/message.html" %}
 
-    <!-- Added Bootstrap carousel to show selected store highlights -->
-    <section class="container-fluid p-0" title="showcase-carousel">
-        {% include "showcase/showcase-carousel.html" %}
-    </section>
+    {% if store_products %}
+        <!-- Added Bootstrap carousel to show selected store highlights -->
+        <section class="container-fluid p-0" title="showcase-carousel">
+            {% include "showcase/showcase-carousel.html" %}
+        </section>
 
-    <section class="container p-0 my-4" title="showcase-products-card">
-        {% include "showcase/showcase-product-card.html" %}
-    </section>
+        <section class="container p-0 my-4" title="showcase-products-card">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 align-items-stretch g-5">
+                {% for product in store_products %}
+                    {% include "showcase/showcase-product-card.html" %}
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+
+    <!-- Modal Details -->
+    {% include "showcase/showcase-product-modal-details.html" %}
 {% endblock %}
 
 {% block "social_media" %}
-    <li class="mx-2"><a class="text-white fs-4" href="#"><i class="bi bi-twitter"></i></a></li>
-    <li class="mx-2"><a class="text-white fs-4" href="#"><i class="bi bi-instagram"></i></a></li>
-    <li class="mx-2"><a class="text-white fs-4" href="#"><i class="bi bi-facebook"></i></a></li>
-    <li class="mx-2"><a class="text-white fs-4" href="#"><i class="bi bi-youtube"></i></a></li>
+    {% for item in store.social_networks.all %}
+        <li class="mx-2"><a class="text-white fs-4" target="_blank" rel="noopener noreferrer" href="{{ item.url }}"><i class="bi bi-{{ item.media|lower }}"></i></a></li>
+    {% endfor %}
 {% endblock %}
 
 {% block "script" %}
     <script src="{% static 'js/modal.alert.js' %}"></script>
+    <script src="{% static 'showcase/js/showcase-script.js' %}"></script>
 {% endblock %}

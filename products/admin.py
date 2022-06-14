@@ -11,7 +11,7 @@ class ProductImagesInLine(admin.TabularInline):
     max_num = 3
     fieldsets = (
         (None, {
-            'fields': ('product', 'image', 'type'),
+            'fields': ('image', 'type'),
         }),
     )
 
@@ -20,16 +20,25 @@ class ProductImagesInLine(admin.TabularInline):
 class ProductsAdmin(admin.ModelAdmin):
     form = ProductsForm
     inlines = [ProductImagesInLine]
-    list_display = ('name', 'ean13code', 'sale', 'discount', 'value',
-                    'amount_stock', 'discontinued')
+    list_display = ('name', 'brand', 'ean13code', 'sale', 'full_price',
+                    'discount', 'discount_price', 'discontinued')
     search_fields = ('name', 'ean13code')
-    list_filter = ('sale', 'discontinued')
+    list_filter = ('sale', 'discontinued', 'brand')
+    readonly_fields = ('recorded', 'updated')
     fieldsets = (
         (None, {
-            'fields': (('name', 'ean13code'), 'description', 'sale',
-                       ('discount', 'value'), ('amount_stock',
-                       'store_holder'), 'discontinued'),
+            'fields': (('name', 'brand', 'ean13code'), 'description'),
             'description':
             '<h4><b>*Os campos em negrito são obrigatórios.</b></h4>',
+        }),
+        ('Dados de comercialização', {
+            'fields': ('sale', ('full_price', 'discount', 'discount_price'),
+                       'discontinued')
+        }),
+        ('Loja detentora', {
+            'fields': ('owner_store',)
+        }),
+        ('Dados temporais', {
+            'fields': ('recorded', 'updated')
         }),
     )

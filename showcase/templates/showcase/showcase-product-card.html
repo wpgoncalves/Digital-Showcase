@@ -1,82 +1,89 @@
-{% load static %}
+{% load static %} {% load set_product %}
 
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 align-items-stretch g-5">
+<div class="col">
+    <div class="card h-100 rounded-4 shadow" id="product-card">
 
-    <!-- Card type 1 (OFF) -->
-    <div class="col">
-        <div class="card h-100 rounded-4 shadow" id="product-card">
-            <div class="card-cover card-img-rounded-top-4 text-white"
-                style="background-image: url('{% static "showcase/img/unsplash-photo-1.jpg" %}'); height: 18rem;">
-
-                <!-- if true promotion show it otherwise hide it  -->
-                <div class="d-flex align-items-center justify-content-start w-100 p-3 card-img-rounded-top-4">
-                    <span class="material-symbols-rounded text-warning ">sell</span>
-                    <h6 class="card-subtitle ms-2 text-uppercase text-warning ">Promoção</h6>
-                </div>
+        <!-- Carousel Card -->
+        <div id="carouselCard{{ product.id }}" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                {% for cover_image in store_products_img|set_product:product %}
+                    {% if store_products_img|set_product:product|length > 1 %}
+                        <button type="button" data-bs-target="#carouselCard{{ product.id }}" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.counter0 < 1  %}class="active"{% endif %} aria-current="true" aria-label="Slide {{ forloop.counter0 }}"></button>
+                    {% endif %}
+                {% endfor %}
             </div>
 
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">Camiseta Regata Masculina</h5>
+            <div class="carousel-inner">
+                {% for cover_image in store_products_img|set_product:product %}
+                    <div class="carousel-item {% if forloop.counter0 < 1  %}active{% endif %}" data-bs-interval="3000">
+                        <img src="{{ cover_image.image.url }}" class="d-block w-100 card-img-rounded-top-4" alt="Slide {{ forloop.counter0 }}" style="height: 18rem; object-fit: cover; object-position: center;">
 
-                <!-- if true promotion show it otherwise hide it  -->
-                <h6 class="card-subtitle mb-2 text-muted">33% OFF</h6>
+                        {% if product.sale %}
+                            <div class="carousel-card-cover-caption text-warning d-none d-md-block p-2 rounded-pill">
+                                <div class="card-cover-header">
+                                    <span class="material-symbols-rounded">sell</span>
+                                    <h6 class="card-subtitle ms-2 text-uppercase text-spacing-1">Promoção</h6>
+                                    <small class="card-subtitle ms-auto fst-italic fw-bold">{{ product.discount }}% Off</small>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% empty %}
+                    <div class="carousel-item active" data-bs-interval="3000">
+                        <img src="{% static 'img/load-picture.png' %}" class="d-block w-100 card-img-rounded-top-4" alt="Sem imagem">
 
-                <!-- if true promotion show it otherwise hide it  -->
-                <small class="card-text text-decoration-line-through m-0">de: R$ 59,90</small>
-
-                <div class="d-flex flex-grow-1 align-items-center mb-3">
-                    <!-- if true promotion show  -->
-                    <p class="card-text fs-4 fw-bold">Por: R$ 39,90</p>
-                    <!-- otherwise show this -->
-                    <!-- <p class="card-text fs-2 fw-bold">R$ 39,90</p> -->
-                </div>
-
-                <div class="d-flex align-items-center gap-2">
-                    <a href="#" class="btn btn-outline-danger w-100">Detalhes</a>
-                    <a href="#" class="btn btn-success w-100">Comprar</a>
-                </div>
+                        {% if product.sale %}
+                            <div class="carousel-card-cover-caption text-warning d-none d-md-block">
+                                <div class="card-cover-header">
+                                    <span class="material-symbols-rounded">sell</span>
+                                    <h6 class="card-subtitle ms-2 text-uppercase text-spacing-1">Promoção</h6>
+                                    <small class="card-subtitle ms-auto fst-italic fw-bold">33% Off</small>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
             </div>
-            <!-- <div class="card-body">
-                <h5 class="card-title">Camiseta Regata Masculina</h5>
-                <h6 class="card-subtitle mb-2 text-muted">33% OFF</h6>
 
-                <small class="card-text text-decoration-line-through m-0">de: R$ 59,90</small>
-                <p class="card-text fs-4 fw-bold">Por: R$ 39,90</p>
+            {% if store_products_img|set_product:product|length > 1 %}
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselCard{{ product.id }}" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
 
-                <div class="d-flex align-items-center gap-2">
-                    <a href="#" class="btn btn-outline-danger w-100">Detalhes</a>
-                    <a href="#" class="btn btn-success w-100">Comprar</a>
-                </div>
-            </div> -->
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselCard{{ product.id }}" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Próximo</span>
+                </button>
+            {% endif %}
+        </div>
+
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ product.brand }}</h6>
+
+            <!-- if true promotion show it otherwise hide it  -->
+            {% if product.sale %}
+                <small class="card-text text-decoration-line-through m-0">de: R$ {{ product.full_price }}</small>
+            {% endif %}
+
+            <div class="d-flex flex-grow-1 align-items-center mb-3">
+                <!-- if true promotion show  -->
+                {% if product.sale %}
+                    <p class="card-text fs-4 fw-bold">Por: R$ {{ product.discount_price }}</p>
+                {% else %}
+                    <p class="card-text fs-2 fw-bold">R$ {{ product.full_price }}</p>
+                {% endif %}
+            </div>
+
+            <script id="image_list_{{ product.id }}" type="application/json">
+                [{% for image in store_products_img|set_product:product %}"{{ image.image.url }}"{% if not forloop.last %},{% endif %}{% endfor %}]
+            </script>
+
+            <div class="d-flex align-items-center gap-2">
+                <button type="button" class="btn btn-outline-danger w-100" data-bs-toggle="modal" data-bs-target="#detailsModal" data-bs-name="{{ product.name }}" data-bs-brand="{{ product.brand }}" data-bs-description="{{ product.description }}" data-bs-images="image_list_{{ product.id }}">Detalhes</button>
+                <a href="#" class="btn btn-success fw-bold w-100">Comprar</a>
+            </div>
         </div>
     </div>
-
-    <!-- Card type 2 -->
-    <div class="col">
-        <div class="card h-100 rounded-4 shadow" id="product-card">
-            <div class="card-cover card-img-rounded-top-4 text-white"
-                style="background-image: url('{% static "showcase/img/unsplash-photo-3.jpg" %}'); height: 18rem;">
-                <!-- <div class="d-flex align-items-center justify-content-start w-100 p-3 card-img-rounded-top-4">
-                    <span class="material-symbols-rounded text-warning ">sell</span>
-                    <h6 class="card-subtitle ms-2 text-uppercase text-warning ">Promoção</h6>
-                </div> -->
-            </div>
-
-            <div class="card-body d-flex flex-column">
-                <h5 class="card-title">Camisa Social Feminina</h5>
-                <!-- <h6 class="card-subtitle mb-2 text-muted">33% OFF</h6> -->
-
-                <!-- <small class="card-text text-decoration-line-through m-0">de: R$ 59,90</small> -->
-                <div class="d-flex flex-grow-1 align-items-center mb-3">
-                    <p class="card-text fs-2 fw-bold">R$ 139,90</span>
-                </div>
-
-                <div class="d-flex align-items-center gap-2">
-                    <a href="#" class="btn btn-outline-danger w-100">Detalhes</a>
-                    <a href="#" class="btn btn-success w-100">Comprar</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>

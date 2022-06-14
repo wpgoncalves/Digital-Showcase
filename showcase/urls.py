@@ -3,5 +3,5 @@ from django.urls import path
 from showcase import views
 
 urlpatterns = [
-    path('', views.showcase, name='showcase'),
+    path('<slug:slug>/', views.ShowcaseDetailView.as_view(), name='showcase')
 ]
