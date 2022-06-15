@@ -3,7 +3,7 @@
 {% for key, value in group_stores_images.items %}
     {% if key == store.group %}
         <div class="col">
-            <a class="text-decoration-none" href="{% url 'showcase' slug=store.slug %}">
+            <a class="text-decoration-none" href="{% url 'showcase:showcase' slug=store.slug %}">
                 <div id="store-card" class="card card-cover h-100 overflow-hidden text-primary text-shadow-1 rounded-5 shadow-lg" 
                     style="background-image: url('{% static value.0 %}');">
                     <div class="d-flex flex-column h-100 p-5 pb-3">

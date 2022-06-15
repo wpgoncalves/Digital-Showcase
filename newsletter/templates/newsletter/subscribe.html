@@ -7,9 +7,9 @@
 {% block "title" %}Vitrine Digital{% endblock %}
 
 {% block "nav_items" %}
-    <li class="nav-item"><a href="{% url 'choose-store' %}" class="nav-link">Início</a></li>
-    <li class="nav-item"><a href="{% url 'newsletter' %}" class="nav-link active">Newsletter</a></li>
-    <li class="nav-item"><a href="{% url 'about' %}" class="nav-link" aria-current="page">Sobre</a></li>
+    <li class="nav-item"><a href="{% url 'stores:choose-store' %}" class="nav-link">Início</a></li>
+    <li class="nav-item"><a href="{% url 'newsletter:newsletter' %}" class="nav-link active">Newsletter</a></li>
+    <li class="nav-item"><a href="{% url 'about:about' %}" class="nav-link" aria-current="page">Sobre</a></li>
 {% endblock %}
 
 {% block "body" %}
@@ -24,7 +24,7 @@
             </div>
             
             <div class="col-md-10 mx-auto col-lg-5">
-                <form class="p-4 p-md-5 border rounded-3 bg-light" method="POST" action="{% url 'validate_subscribe' %}">{% csrf_token %}
+                <form class="p-4 p-md-5 border rounded-3 bg-light" method="POST" action="{% url 'newsletter:validate_subscribe' %}">{% csrf_token %}
                     <div class="form-floating mb-3">
                         {% comment %} <input type="text" class="form-control text-capitalize" id="floatingName" placeholder="Nome completo" name="name" required>
                         <label for="floatingName">Nome completo</label> {% endcomment %}

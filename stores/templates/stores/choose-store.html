@@ -9,8 +9,8 @@
 {% block "title" %}Vitrine Digital{% endblock %}
 
 {% block "nav_items" %}
-    <li class="nav-item"><a href="{% url 'choose-store' %}" class="nav-link active">Início</a></li>
-    <li class="nav-item"><a href="{% url 'about' %}" class="nav-link" aria-current="page">Sobre</a></li>
+    <li class="nav-item"><a href="{% url 'stores:choose-store' %}" class="nav-link active">Início</a></li>
+    <li class="nav-item"><a href="{% url 'about:about' %}" class="nav-link" aria-current="page">Sobre</a></li>
 {% endblock %}
 
 {% block "body" %}
@@ -34,7 +34,7 @@
     {% if stores %}
         {% if stores|length == 1 %}
             {% for store in stores %}
-                <meta http-equiv="REFRESH" content="0;url={% url 'showcase' slug=store.slug %}">
+                <meta http-equiv="REFRESH" content="0;url={% url 'showcase:showcase' slug=store.slug %}">
             {% endfor %}
         {% else %}
             <div class="container-fluid p-4">
