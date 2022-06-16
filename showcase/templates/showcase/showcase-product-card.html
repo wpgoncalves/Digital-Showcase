@@ -1,7 +1,7 @@
 {% load static %} {% load set_product %}
 
 <div class="col">
-    <div class="card h-100 rounded-4 shadow" id="product-card">
+    <div class="product-card card h-100 rounded-4 shadow">
 
         <!-- Carousel Card -->
         <div id="carouselCard{{ product.id }}" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -16,7 +16,7 @@
             <div class="carousel-inner">
                 {% for cover_image in store_products_img|set_product:product %}
                     <div class="carousel-item {% if forloop.counter0 < 1  %}active{% endif %}" data-bs-interval="3000">
-                        <img src="{{ cover_image.image.url }}" class="d-block w-100 card-img-rounded-top-4" alt="Slide {{ forloop.counter0 }}" style="height: 18rem; object-fit: cover; object-position: center;">
+                        <img src="{{ cover_image.image.url }}" class="d-block w-100 card-img-rounded-top-4" alt="{{ product.name}} - Imagem {{ forloop.counter0 }}" style="height: 18rem; object-fit: cover; object-position: center;">
 
                         {% if product.sale %}
                             <div class="carousel-card-cover-caption text-warning d-none d-md-block p-2 rounded-pill">
