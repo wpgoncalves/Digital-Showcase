@@ -7,11 +7,35 @@ from newsletter.models import Newsletter
 
 
 def subscribe(request):
+    """Renders the template corresponding to the newsletter user subscription form.
+
+    (pt-BR) Renderiza o template correspondente ao formulário de inscrição
+    do usuário na newsletter.
+
+    Args:
+        request (class): django.core.handlers.wsgi.WSGIRequest
+
+    Returns:
+        class: django.http.response.HttpResponse
+    """
+
     form = NewsletterForm()
     return render(request, 'newsletter/subscribe.html', {'form': form})
 
 
 def validate_subscribe(request):
+    """Validates the user's subscription information for the newsletter.
+
+    (pt_BR) Realiza a validação das informações de inscrição do usuário na
+    newsletter.
+
+    Args:
+        request (class): django.core.handlers.wsgi.WSGIRequest
+
+    Returns:
+        class: django.http.response.HttpResponseRedirect
+    """
+
     if request.method == 'POST':
         name = string_capitalize((request.POST.get('name')).strip())
         email = str(request.POST.get('email')).strip()
@@ -22,6 +46,8 @@ def validate_subscribe(request):
 
             if not is_duplicated:
                 try:
+                    # Possible to refactor the code using the full_clean
+                    # method to raise exceptions.
                     Newsletter(name=name, email=email).save()
                     level = messages.SUCCESS
                     message = 'E-mail cadastrado com sucesso! Obrigado por assinar \
