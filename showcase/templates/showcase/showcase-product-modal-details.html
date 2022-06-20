@@ -6,7 +6,7 @@
                     <h5 class="modal-title display-6">Camiseta Regata Masculina</h5>
                     <h6 class="modal-subtitle mb-2 text-muted">Hering</h6>
                 </div>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" data-toggle="tooltip" data-placement="top" title="Fechar detalhes"></button>
             </div>
 
             <div class="modal-body">
@@ -14,42 +14,25 @@
                     <div class="col col-lg-5">
                         <!-- Carousel -->
                         <div id="carouselDetailsModal" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                            </div>
-
-                            <button class="carousel-control-prev" type="button"
-                                data-bs-target="#carouselDetailsModal" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Anterior</span>
-                            </button>
-
-                            <button class="carousel-control-next" type="button"
-                                data-bs-target="#carouselDetailsModal" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Próximo</span>
-                            </button>
+                            <!-- All content here will be dynamically created using Javascript -->
                         </div>
                     </div>
                     <div class="col col-lg-7">
                         <div class="d-flex align-items-center justify-content-end border-bottom py-3 pt-lg-0 pb-lg-3 pt-xl-0 pb-xl-3 pt-xxl-0 pb-xxl-3">
                             <small class="me-2 text-muted">Acessibilidade</small>
                             <div class="btn-group btn-group-sm" role="group" aria-label="Botões de acessibilidade para aumentar e diminuir a fonte">
-                                <button type="button" class="btn btn-outline-primary" onclick="decreaseFont()">A -</button>
-                                <button type="button" class="btn btn-outline-primary" onclick="increaseFont()">A +</button>
+                                <button type="button" class="btn btn-outline-primary" onclick="decreaseFont()" data-toggle="tooltip" data-placement="top" title="Aumentar fonte">A -</button>
+                                <button type="button" class="btn btn-outline-primary" onclick="increaseFont()" data-toggle="tooltip" data-placement="top" title="Diminuir fonte">A +</button>
                             </div>
                         </div>
 
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa provident sapiente,
-                            pariatur
-                            dolores ullam atque suscipit esse in illum molestiae consequatur rem voluptas! Omnis
-                            repellendus
-                            nobis aperiam? Totam, quo obcaecati.</p>
+                        <p>Infelizmente nenhuma descrição foi informada para o item selecionado!!!</p>
                     </div>
                 </div>
             </div>
 
             <div class="modal-footer d-none d-sm-none d-md-flex d-lg-flex d-xl-flex d-xxl-flex">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-toggle="tooltip" data-placement="top" title="Fechar detalhes">Fechar</button>
             </div>
         </div>
     </div>

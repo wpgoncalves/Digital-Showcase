@@ -20,10 +20,10 @@ class ProductImagesInLine(admin.TabularInline):
 class ProductsAdmin(admin.ModelAdmin):
     form = ProductsForm
     inlines = [ProductImagesInLine]
-    list_display = ('name', 'brand', 'ean13code', 'sale', 'full_price',
-                    'discount', 'discount_price', 'discontinued')
+    list_display = ('name', 'brand', 'ean13code', 'featured', 'sale',
+                    'full_price', 'discount', 'discount_price', 'discontinued')
     search_fields = ('name', 'ean13code')
-    list_filter = ('sale', 'discontinued', 'brand')
+    list_filter = ('sale', 'featured', 'discontinued', 'brand')
     readonly_fields = ('recorded', 'updated')
     fieldsets = (
         (None, {
@@ -32,8 +32,8 @@ class ProductsAdmin(admin.ModelAdmin):
             '<h4><b>*Os campos em negrito são obrigatórios.</b></h4>',
         }),
         ('Dados de comercialização', {
-            'fields': ('sale', ('full_price', 'discount', 'discount_price'),
-                       'discontinued')
+            'fields': (('featured', 'sale'), ('full_price', 'discount',
+                       'discount_price'), 'discontinued')
         }),
         ('Loja detentora', {
             'fields': ('owner_store',)

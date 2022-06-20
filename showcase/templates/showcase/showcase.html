@@ -1,6 +1,6 @@
 {% extends "base/index.html" %}
 
-{% load static %}
+{% load static %} {% load set_product_featured %}
 
 {% block "style" %}
     <link rel="stylesheet" type="text/css" href="{% static 'showcase/css/showcase-stylesheet.css' %}">
@@ -22,9 +22,11 @@
 
     {% if store_products %}
         <!-- Added Bootstrap carousel to show selected store highlights -->
-        <section class="container-fluid p-0" title="showcase-carousel">
-            {% include "showcase/showcase-carousel.html" %}
-        </section>
+        {% if store_products|set_product_featured %}
+            <section class="container-fluid p-0" title="showcase-carousel">
+                {% include "showcase/showcase-carousel.html" %}
+            </section>
+        {% endif %}
 
         <section class="container p-0 my-4" title="showcase-products-card">
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 align-items-stretch g-5">

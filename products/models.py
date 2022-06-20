@@ -25,6 +25,9 @@ class Products(models.Model):
     sale = models.BooleanField(verbose_name='Promoção',
                                default=False)
 
+    featured = models.BooleanField(verbose_name='Exibir como destaque',
+                                   default=False)
+
     full_price = models.DecimalField(verbose_name='Preço Cheio',
                                      max_digits=8,
                                      decimal_places=2)
@@ -84,11 +87,11 @@ class ProductImages(models.Model):
         verbose_name = 'Imagem de Produto'
         verbose_name_plural = 'Imagens de Produto'
 
-        constraints = [
-            models.UniqueConstraint(
-                fields=['product', 'type'], name='unique_cover_image_product'
-            )
-        ]
+        # constraints = [
+        #     models.UniqueConstraint(
+        #         fields=['product', 'type'], name='unique_cover_image_product'
+        #     )
+        # ]
 
     def __str__(self):
         return str(self.product)

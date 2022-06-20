@@ -1,7 +1,7 @@
 {% load static %} {% load set_product %}
 
 <div class="col">
-    <div class="product-card card h-100 rounded-4 shadow">
+    <div class="product-card card h-100 rounded-4 shadow" data-toggle="tooltip" data-placement="top" title="">
 
         <!-- Carousel Card -->
         <div id="carouselCard{{ product.id }}" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -81,8 +81,8 @@
             </script>
 
             <div class="d-flex align-items-center gap-2">
-                <button type="button" class="btn btn-outline-danger w-100" data-bs-toggle="modal" data-bs-target="#detailsModal" data-bs-name="{{ product.name }}" data-bs-brand="{{ product.brand }}" data-bs-description="{{ product.description }}" data-bs-images="image_list_{{ product.id }}">Detalhes</button>
-                <a href="#" class="btn btn-success fw-bold w-100">Comprar</a>
+                <button type="button" class="btn btn-outline-danger w-100" data-bs-toggle="modal" data-bs-target="#detailsModal" data-bs-name="{{ product.name }}" data-bs-brand="{{ product.brand }}" data-bs-description="{{ product.description }}" data-bs-images="image_list_{{ product.id }}" data-toggle="tooltip" data-placement="top" title="Exibe os detalhes do produto">Detalhes</button>
+                <a href="#" class="btn btn-success fw-bold w-100" data-toggle="tooltip" data-placement="top" title="Insere o produto na lista de compras">Comprar</a>
             </div>
         </div>
     </div>

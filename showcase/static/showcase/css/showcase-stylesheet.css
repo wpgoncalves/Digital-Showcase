@@ -1,25 +1,34 @@
 @charset "UTF-8";
 
-.product-card {
-    transition: all 0.3s ease;
-}
+@media (min-width: 576px){
+    .product-card {
+        transition: all 0.5s ease;
+    }
 
-.product-card:hover {
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
+    .product-card:hover {
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+    }
 }
 
 #carouselShowcase .carousel-inner > .carousel-item > img {
-    height: 36rem; 
+    height: 36rem;
+    object-fit: fill;
+    object-position: center;
+}
+
+#carouselShowcase .carousel-inner .carousel-caption {
+    -webkit-backdrop-filter: brightness(50%);
+    backdrop-filter: brightness(50%);
 }
 
 #carouselDetailsModal .carousel-inner .carousel-item img {
-  height: 20rem;
-  object-fit: cover;
-  object-position: center;
+    height: 20rem;
+    object-fit: cover;
+    object-position: center;
 }
 
 #detailsModal .modal-body p {
-  font-size: medium;
+    font-size: medium;
 }

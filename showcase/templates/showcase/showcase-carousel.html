@@ -1,44 +1,58 @@
-{% load static %}
+{% load static %} {% load set_product %} {% load set_product_featured %} {% load set_cover_image %}
 
-<div id="carouselShowcase" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselShowcase" class="carousel slide" data-bs-ride="carousel" data-toggle="tooltip" data-placement="top" title="">
 
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselShowcase" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true"></button>
-        <button type="button" data-bs-target="#carouselShowcase" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselShowcase" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
+    {% if store_products|set_product_featured|length > 1 %}
+        <div class="carousel-indicators">
+            {% for product in store_products|set_product_featured %}
+                <!-- Caso haja algum produto que tenha sido marcado para ser exibido como destaque -->
+        
+                {% if store_products_img|set_product:product|set_cover_image:"Capa" is not None %}
+                    <!-- Para o product selecionado buscar entre suas imagens associadas sua imagem de capa -->
+                    <button type="button" data-bs-target="#carouselShowcase" data-bs-slide-to="{{ forloop.counter0 }}" aria-label="Slide {{ forloop.counter }}" {% if forloop.counter0 < 1 %}class="active" aria-current="true"{% endif %}></button>
+                {% elif store_products_img|set_product:product|set_cover_image:"Adicional" is not None %}
+                    <!-- Caso não se encontre imagem de capa associada ao product buscar pela adicional -->
+                    <button type="button" data-bs-target="#carouselShowcase" data-bs-slide-to="{{ forloop.counter0 }}" aria-label="Slide {{ forloop.counter }}" {% if forloop.counter0 < 1 %}class="active" aria-current="true"{% endif %}></button>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
 
     <div class="carousel-inner">
-        <div class="carousel-item active" data-bs-interval="3000">
-            <img src="{% static 'img/load-picture.png' %}" class="d-block w-100" alt="Imagem do carrossel - slide 1">
-            <div class="carousel-caption d-none d-md-block text-shadow-1">
-                <h5 class="display-4 text-uppercase fw-bold opacity-25">{{ store.title_establishment }}</h5>
-                <!-- <p class="opacity-25">Aqui será apresentado um destaque da loja participante acima.</p> -->
-            </div>
-        </div>
-        <div class="carousel-item" data-bs-interval="3000">
-            <img src="{% static 'img/load-picture.png' %}" class="d-block w-100" alt="Imagem do carrossel - slide 2">
-            <div class="carousel-caption d-none d-md-block text-shadow-1">
-                <h5 class="display-4 text-uppercase fw-bold opacity-25">{{ store.title_establishment }}</h5>
-                <!-- <p class="opacity-25">Aqui será apresentado um destaque da loja participante acima.</p> -->
-            </div>
-        </div>
-        <div class="carousel-item" data-bs-interval="3000">
-            <img src="{% static 'img/load-picture.png' %}" class="d-block w-100" alt="Imagem do carrossel - slide 3">
-            <div class="carousel-caption d-none d-md-block text-shadow-1">
-                <h5 class="display-4 text-uppercase fw-bold opacity-25">{{ store.title_establishment }}</h5>
-                <!-- <p class="opacity-25">Aqui será apresentado um destaque da loja participante acima.</p> -->
-            </div>
-        </div>
+        {% for product in store_products|set_product_featured %}
+            <!-- Caso haja algum produto que tenha sido marcado para ser exibido como destaque -->
+    
+            {% if store_products_img|set_product:product|set_cover_image:"Capa" is not None %}
+                <!-- Para o product selecionado buscar entre suas imagens associadas sua imagem de capa -->
+                <div class="carousel-item {% if forloop.counter0 < 1 %}active{% endif %}" data-bs-interval="3000">
+                    <img src="{{ store_products_img|set_product:product|set_cover_image:"Capa" }}" class="d-block w-100" alt="Imagem do carrossel - slide {{ forloop.counter }}">
+                    <div class="carousel-caption d-none d-md-block text-shadow-1 rounded-pill">
+                        <h5 class="display-4 text-uppercase fw-bold opacity-50">{{ store.title_establishment }}</h5>
+                        <p class="fs-5 opacity-50">{{ product.name }}</p>
+                    </div>
+                </div>
+            {% elif store_products_img|set_product:product|set_cover_image:"Adicional" is not None %}
+                <!-- Caso não se encontre imagem de capa associada ao product buscar pela adicional -->
+                <div class="carousel-item {% if forloop.counter0 < 1 %}active{% endif %}" data-bs-interval="3000">
+                    <img src="{{ store_products_img|set_product:product|set_cover_image:"Adicional" }}" class="d-block w-100" alt="Imagem do carrossel - slide {{ forloop.counter }}">
+                    <div class="carousel-caption d-none d-md-block text-shadow-1 rounded-pill">
+                        <h5 class="display-4 text-uppercase fw-bold opacity-50">{{ store.title_establishment }}</h5>
+                        <p class="fs-5 opacity-50">{{ product.name }}</p>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
     </div>
 
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselShowcase" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
+    {% if store_products|set_product_featured|length > 1 %}
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselShowcase" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
 
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselShowcase" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselShowcase" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    {% endif %}
 </div>

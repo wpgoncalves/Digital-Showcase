@@ -27,33 +27,31 @@
 </head>
 
 <body class="d-flex vh-100 flex-column flex-nowrap" style="min-width: 20rem;">
-    {% comment %} <div class="d-flex vh-100 flex-column flex-nowrap" style="min-width: 20rem;"> {% endcomment %}
-        <header class="flex-grow-0 flex-basis-auto">
-            <nav class="navbar navbar-dark bg-header shadow-inset" aria-label="Barra de navegação">
-                {% include "base/header.html" %}
+    <header class="flex-grow-0 flex-basis-auto">
+        <nav class="navbar navbar-dark bg-header" aria-label="Barra de navegação">
+            {% include "base/header.html" %}
 
-                <div class="collapse navbar-collapse" id="navbarMain">
-                    <ul class="navbar-nav me-auto m-2">
-                    {% block "nav_items" %}{% endblock %}
-                    </ul>
-                </div>
-            </nav>
-        </header>
-
-        <main class="flex-grow-1 flex-basis-auto bg-main">
-            {% block "body" %}{% endblock %}
-        </main>
-
-        <footer class="flex-grow-0 flex-basis-auto">
-            <div class="container-fluid bg-footer shadow-inset border-top d-flex flex-wrap justify-content-between align-items-center py-3">
-                {% include "base/footer.html" %}
-
-                <ul class="nav col-md-4 justify-content-end list-unstyled d-none d-md-flex d-lg-flex d-xl-flex d-xxl-flex">
-                    {% block "social_media" %}{% endblock %}
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav me-auto m-2">
+                {% block "nav_items" %}{% endblock %}
                 </ul>
             </div>
-        </footer>
-    {% comment %} </div> {% endcomment %}
+        </nav>
+    </header>
+
+    <main class="flex-grow-1 flex-basis-auto bg-main">
+        {% block "body" %}{% endblock %}
+    </main>
+
+    <footer class="flex-grow-0 flex-basis-auto">
+        <div class="container-fluid bg-footer border-top d-flex flex-wrap justify-content-between align-items-center py-3">
+            {% include "base/footer.html" %}
+
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-none d-md-flex d-lg-flex d-xl-flex d-xxl-flex">
+                {% block "social_media" %}{% endblock %}
+            </ul>
+        </div>
+    </footer>
 
     <!-- JavaScript - JS (Bootstrap, JQuery, Query Mask Plugin, Project)-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
