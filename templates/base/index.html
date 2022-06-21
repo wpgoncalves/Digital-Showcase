@@ -44,10 +44,10 @@
     </main>
 
     <footer class="flex-grow-0 flex-basis-auto">
-        <div class="container-fluid bg-footer border-top d-flex flex-wrap justify-content-between align-items-center py-3">
+        <div class="container-fluid bg-footer border-top d-flex flex-wrap justify-content-center align-items-center gap-2 py-3">
             {% include "base/footer.html" %}
 
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-none d-md-flex d-lg-flex d-xl-flex d-xxl-flex">
+            <ul class="nav flex-grow-1 flex-sm-grow-0 flex-md-grow-0 flex-lg-grow-0 flex-xl-grow-0 flex-xxl-grow-0 justify-content-center align-items-center list-unstyled">
                 {% block "social_media" %}{% endblock %}
             </ul>
         </div>

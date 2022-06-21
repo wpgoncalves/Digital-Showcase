@@ -30,14 +30,16 @@
     filter: brightness(1) opacity(1);
 }
 
-.store-card {
-    opacity: 0.6;
-    transition: all 0.3s ease;
-}
+@media (min-width: 576px){
+    .store-card {
+        opacity: 0.6;
+        transition: all 0.3s ease;
+    }
 
-.store-card:hover {
-    -webkit-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
-    opacity: 1;
+    .store-card:hover {
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+        opacity: 1;
+    }
 }
