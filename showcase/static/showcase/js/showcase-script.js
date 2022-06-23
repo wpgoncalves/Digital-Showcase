@@ -111,3 +111,7 @@ function increaseFont() {
         };
       });
 };
+
+function constructionAlert() {
+    alert("Desculpe-nos mas está funcionalidade ainda esta em construção!")
+};

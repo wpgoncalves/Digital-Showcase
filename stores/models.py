@@ -8,6 +8,7 @@ from validate_docbr import CNPJ
 class Stores(models.Model):
 
     class GroupChoices(models.TextChoices):
+        COSMETICS = 'Cosméticos', 'Cosméticos'
         CANDY = 'Doceria', 'Doceria'
         SNACK_BAR = 'Lanchonete', 'Lanchonete'
         PIZZERIA = 'Pizzaria', 'Pizzaria'

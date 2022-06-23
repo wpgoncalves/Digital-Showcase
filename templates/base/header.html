@@ -2,7 +2,7 @@
 
 <div class="container-fluid">
     <a href="{% url 'stores:choose-store' %}" class="navbar-brand d-flex" style="font-size: 28px !important;">
-        <img class="d-inline-block align-text-top" src="{% static "img/brand.png" %}" alt="Brand" width="96" height="46">
+        <img class="d-inline-block align-text-top" src="{% static "img/brand.png" %}" alt="Brand" width="110" height="46">
         <span id="brand" class="ms-2 text-white d-none">Vitrine Digital</span>
     </a>
 
@@ -27,7 +27,12 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
 
+    <hr class="m-0 mx-2">
+
     <div class="offcanvas-body">
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus, magnam blanditiis velit sunt et ullam architecto nobis eum modi illum a cum accusamus dolore hic. Ullam incidunt eos aliquid repellendus.</p>
+        <img src="{% static 'img/under-construction.png' %}" class="w-100 mb-5" alt="Em construção">
+        <p>Desculpe-nos mas está funcionalidade ainda esta em construção!</p>
+        <p>Estamos trabalhando duro para melhor atendê-los, logo logo, estas e outras funcionalidades estaram a disposição!</p>
+        <p class="text-center fw-bold">Agradecemos sua preferência e compreesão.</p>
     </div>
 </div>

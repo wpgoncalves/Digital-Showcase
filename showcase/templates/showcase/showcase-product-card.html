@@ -80,9 +80,10 @@
                 [{% for image in store_products_img|set_product:product %}"{{ image.image.url }}"{% if not forloop.last %},{% endif %}{% endfor %}]
             </script>
 
-            <div class="d-flex align-items-center gap-2">
+            <div class="d-flex justify-content-center align-items-center gap-2">
                 <button type="button" class="btn btn-outline-danger w-100" data-bs-toggle="modal" data-bs-target="#detailsModal" data-bs-name="{{ product.name }}" data-bs-brand="{{ product.brand }}" data-bs-description="{{ product.description }}" data-bs-images="image_list_{{ product.id }}" data-toggle="tooltip" data-placement="top" title="Exibe os detalhes do produto">Detalhes</button>
-                <a href="#" class="btn btn-success fw-bold w-100" data-toggle="tooltip" data-placement="top" title="Insere o produto na lista de compras">Comprar</a>
+                <button type="button" class="btn btn-success fw-bold w-100" onclick="constructionAlert()" data-toggle="tooltip" data-placement="top" title="Insere o produto na lista de compras">Comprar</button>
+                {% comment %} <a href="#" class="btn btn-success fw-bold w-100" data-toggle="tooltip" data-placement="top" title="Insere o produto na lista de compras">Comprar</a> {% endcomment %}
             </div>
         </div>
     </div>

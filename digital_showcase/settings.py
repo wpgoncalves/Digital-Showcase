@@ -156,5 +156,6 @@ GROUP_STORES_IMAGES = {
     'Lanchonete': ('stores/img/group-snack-bars.jpg', 'coffee'),
     'Pizzaria': ('stores/img/group-pizzerias.jpg', 'local_pizza'),
     'Restaurante': ('stores/img/group-restaurants.jpg', 'restaurant'),
-    'Vestuário': ('stores/img/group-clothing.jpg', 'checkroom')
+    'Vestuário': ('stores/img/group-clothing.jpg', 'checkroom'),
+    'Cosméticos': ('stores/img/group-cosmetics.jpg', 'brush')
 }
