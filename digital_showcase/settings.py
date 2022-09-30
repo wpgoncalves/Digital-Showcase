@@ -126,6 +126,7 @@ STATICFILES_DIRS = [
     ('favicons', Path.joinpath(STATIC_ROOT, 'favicons')),
     ('img', Path.joinpath(STATIC_ROOT, 'img')),
     ('js', Path.joinpath(STATIC_ROOT, 'js')),
+    ('json', Path.joinpath(STATIC_ROOT, 'json'))
 ]
 
 MEDIA_URL = 'media/'
