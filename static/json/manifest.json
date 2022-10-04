@@ -9,69 +9,50 @@
   "short_name": "V. Digital",
   "start_url": "/",
   "theme_color": "#2180a7",
-  "categories": [],
-  "screenshots": [
-    {
-      "src": "/images/screenshot-1.png",
-      "sizes": "1280x800",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/screenshot-2.png",
-      "sizes": "750x1334",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/screenshot-3.png",
-      "sizes": "1280x800",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/screenshot-4.png",
-      "sizes": "750x1334",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/screenshot-5.png",
-      "sizes": "1280x800",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/screenshot-6.png",
-      "sizes": "750x1334",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/screenshot-7.png",
-      "sizes": "1280x800",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/screenshot-8.png",
-      "sizes": "750x1334",
-      "type": "image/png"
-    }
-  ],
+  "categories": ["compras", "rede social", "vitrines"],
   "icons": [
     {
-      "src": "/static/favicons/favicon-32x32.3fb3377484be.png",
+      "src": "/static/favicons/favicon-32x32.png",
       "type": "image/png",
       "sizes": "32x32"
     },
     {
-      "src": "/static/favicons/favicon-16x16.e96d678368a4.png",
+      "src": "/static/favicons/favicon-16x16.png",
       "type": "image/png",
       "sizes": "16x16"
     },
     {
-      "src": "/static/favicons/favicon.1f490fd9a0dc.ico",
+      "src": "/static/favicons/favicon.ico",
       "type": "image/x-icon"
     },
     {
-      "src": "/static/favicons/apple-touch-icon.0c256ee25b45.png",
+      "src": "/static/favicons/apple-touch-icon.png",
       "type": "image/png",
       "sizes": "180x180"
+    },
+    {
+      "src": "/static/favicons/android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/static/favicons/android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
-  "shortcuts": []
+  "shortcuts": [
+    {
+      "name": "Home",
+      "url":"/mall"
+    },
+    {
+      "name": "Sobre",
+      "url":"/about"
+    },
+    {
+      "name": "Newsletter",
+      "url":"/newsletter"
+    }
+  ]
 }
