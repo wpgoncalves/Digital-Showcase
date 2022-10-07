@@ -1,0 +1,27 @@
+{% extends "base/index.html" %}
+
+{% load static %}
+
+{% block "title" %}Vitrine Digital - Offline{% endblock %}
+
+{% block "body" %}
+    <!-- Inclusion of Bootstrap alert messages -->
+    {% include "base/message.html" %}
+
+    <!-- Showcase - Slogan -->
+    <div class="hero-image position-relative" style="background-image: url('{% static "img/showcase-slogan3.png" %}');"></div>
+    
+    <!-- Information banner -->
+    <div class="container-fluid d-flex justify-content-center bg-info-banner text-white p-4 gap-3">
+        <div class="d-flex align-items-center pt-1">
+            <span class="material-symbols-rounded fs-1 text-shadow-1 m-0">local_mall</span>
+        </div>
+        <h4 class="display-4 m-0 fw-light text-shadow-1">O melhor da região na sua vitrine</h4>
+    </div><h1>You are currently not connected to any networks.</h1>
+
+    <h1>No momento, você não está conectado a nenhuma rede.</h1>
+{% endblock %}
+
+{% block "script" %}
+    <script src="{% static 'js/modal.alert.js' %}"></script>
+{% endblock %}

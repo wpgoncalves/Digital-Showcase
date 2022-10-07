@@ -12,6 +12,7 @@ urlpatterns = [
     path('showcase/', include('showcase.urls')),
     path('customers/', include('customers.urls')),
     path('', RedirectView.as_view(url='mall/')),
+    path('', include('pwa_fix.urls'))
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
