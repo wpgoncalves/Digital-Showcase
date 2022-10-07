@@ -2,24 +2,49 @@
 
 {% load static %}
 
+{% block "style" %}
+
+    <style>
+        @charset "UTF-8";
+
+        :root {
+            --bs-info-banner-bg-rgb: 67, 0, 60;
+            --bs-info-banner-text-rgb: 70, 113, 140;
+        }
+
+        .text-info-banner {
+            color: rgba(var(--bs-info-banner-text-rgb), 1)
+        }
+
+        .bg-info-banner {
+            background-color: rgba(var(--bs-info-banner-bg-rgb), 1)
+        }
+
+        .hero-image {
+            height: 36rem;
+            background-color: #cccccc;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            filter: brightness(0.75) opacity(1);
+        }
+        
+        .hero-text {
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: brightness(1) opacity(1);
+        }
+    </style>
+{% endblock %}
+
 {% block "title" %}Vitrine Digital - Offline{% endblock %}
 
 {% block "body" %}
     <!-- Inclusion of Bootstrap alert messages -->
     {% include "base/message.html" %}
 
-    <!-- Showcase - Slogan -->
-    <div class="hero-image position-relative" style="background-image: url('{% static "img/showcase-slogan3.png" %}');"></div>
-    
-    <!-- Information banner -->
-    <div class="container-fluid d-flex justify-content-center bg-info-banner text-white p-4 gap-3">
-        <div class="d-flex align-items-center pt-1">
-            <span class="material-symbols-rounded fs-1 text-shadow-1 m-0">local_mall</span>
-        </div>
-        <h4 class="display-4 m-0 fw-light text-shadow-1">O melhor da região na sua vitrine</h4>
-    </div><h1>You are currently not connected to any networks.</h1>
-
-    <h1>No momento, você não está conectado a nenhuma rede.</h1>
+    <h1 class="display-5 text-center p-5">No momento, você não está conectado a nenhuma rede.</h1>
 {% endblock %}
 
 {% block "script" %}
