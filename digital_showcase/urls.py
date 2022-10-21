@@ -11,6 +11,7 @@ urlpatterns = [
     path('newsletter/', include('newsletter.urls')),
     path('showcase/', include('showcase.urls')),
     path('customers/', include('customers.urls')),
+    path('app/', include('app.urls')),
     path('', RedirectView.as_view(url='mall/')),
     path('', include('pwa_fix.urls'))
 ]

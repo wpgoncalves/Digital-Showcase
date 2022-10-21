@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+.banner {
+    background: url("/static/img/app_install.png") no-repeat center / cover;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Merienda One', cursive;
+    height: calc(100vh - 72px);
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.banner__titulo {
+    color: #fdfdfd
+}
+
+.benefits {
+    align-items: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 20px;
+    justify-content: space-around;
+    margin: 1rem 0;
+}
+
+.benefits__card {
+    align-items: center;
+    background-color: inherit;
+    border: .125rem solid #4c4c4c;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    justify-content: center;
+    padding: 1rem;
+    width: 320px;
+}
+
+.benefits__title {
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 2rem;
+}
+
+.benefits__description {
+    font-size: 1.25rem;
+    flex-grow: 1;
+    text-align: justify;
+}
+
+.benefits__icons {
+    align-items: center;
+    border-top: 1px solid #4c4c4c;
+    padding-top: 1rem;
+    display: flex;
+    gap: 0.625rem;
+    justify-content: center;
+    width: 100%;
+}
+
+.command {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.command_message {
+
+}

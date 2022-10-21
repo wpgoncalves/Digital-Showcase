@@ -1,0 +1,72 @@
+{% extends "base/index.html" %}
+
+{% load static %}
+
+{% block "style" %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/app_install-stylesheet.css' %}">
+{% endblock %}
+
+{% block "title" %}Nosso App{% endblock %}
+
+{% block "nav_items" %}
+	<li class="nav-item"><a href="{% url 'stores:choose-store' %}" class="nav-link">Início</a></li>
+	<li class="nav-item"><a href="{% url 'app:app_install' %}" class="nav-link" aria-current="page">Nosso App</a></li>
+	<li class="nav-item"><a href="{% url 'about:about' %}" class="nav-link active" aria-current="page">Sobre</a></li>
+{% endblock %}
+
+{% block "body" %}
+    <div class="container-fluid banner">
+        <h1 class="display-3 text-shadow-2 fw-bold lh-base py-2 banner__titulo">Baixe nosso App agora e tenha a Vitrine Diginal na palma de suas mãos.</h1>
+    </div>
+
+    <!-- background-color: #ffd800; -->
+
+    <div class="container px-4 py-5" style="color: #4c4c4c;">
+        <h2 class="display-6 fw-bold text-center lh-1 mb-4">Conheça algumas das vantagens de baixar o app Vitrine Digital</h2>
+
+        <div class="benefits">
+            <div class="benefits__card">
+                <h4 class="benefits__title">Mobilidade</h4>
+                <p class="benefits__description">Pode ser usado em seu smartphone ou tablet de onde estiver.</p>
+                <div class="benefits__icons">
+                    <span class="material-symbols-rounded fs-2">devices</span>
+                    <span class="material-symbols-rounded fs-2">smartphone</span>
+                    <span class="material-symbols-rounded fs-2">tablet_android</span>
+                </div>
+            </div>
+
+            <div class="benefits__card">
+                <h4 class="benefits__title">Não perca nada</h4>
+                <p class="benefits__description">Notificações rápidas com informações e promoções quentinhas.</p>
+                <div class="benefits__icons">
+                    <span class="material-symbols-rounded fs-2">notifications</span>
+                    <span class="material-symbols-rounded fs-2">warning</span>
+                    <span class="material-symbols-rounded fs-2">breaking_news_alt_1</span>
+                </div>
+            </div>
+
+            <div class="benefits__card">
+                <h4 class="benefits__title">Compatibilidade</h4>
+                <p class="benefits__description">Compatível com os sistemas operacionais mais utilizados como o Android e o IOS.</p>
+                <div class="benefits__icons">
+                    <i class="bx bxl-android fs-1" ></i>
+                    <i class="bx bxl-apple fs-1"></i>
+                </div>
+            </div>
+        </div>
+    
+        <div class="container command mt-4">
+            <p class="fs-4 text-center">Não perca mais tempo! <strong>Instale agora!</strong></p>
+            <p class="fs-4 text-center"> Clique no botão abaixo para iniciar a instalação.</p>
+            
+            <button id="btn-installPWA" class="btn btn-lg btn-primary p-3" disabled>Instalar App Vitrine Digital</button>
+        </div>
+    
+    </div>
+{% endblock %}
+
+<!-- {% block "social_media" %}{% endblock %} -->
+
+{% block "script" %}
+    <script src="{% static 'app/js/inApp-installation.js' %}"></script>
+{% endblock %}
