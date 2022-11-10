@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'about',
     'cart',
     'app',
+    'api',
     'pwa'
 ]
 
