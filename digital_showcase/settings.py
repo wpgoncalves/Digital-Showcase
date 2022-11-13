@@ -20,20 +20,22 @@ SECRET_KEY = env('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DJANGO_DEBUG', bool, False)
 
-ALLOWED_HOSTS = env('DJANGO_ALLOWED_HOSTS', list, [])
+if DEBUG:
+    ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
+else:
+    ALLOWED_HOSTS = ['digitalshowcase.pythonanywhere.com']
 
 # Application definition
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'cloudinary_storage',
+    'whitenoise.runserver_nostatic',
+    'django.contrib.staticfiles',
     'cloudinary',
-    'django_cleanup.apps.CleanupConfig',
     'global_models',
     'newsletter',
     'customers',
@@ -43,7 +45,8 @@ INSTALLED_APPS = [
     'about',
     'cart',
     'app',
-    'pwa'
+    'pwa',
+    'django_cleanup.apps.CleanupConfig'
 ]
 
 MIDDLEWARE = [
@@ -78,12 +81,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'digital_showcase.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+if DEBUG:
+    DB_PARAMETERS = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+else:
+    DB_PARAMETERS = {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT'),
+        'OPTION': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        }
+    }
+
 DATABASES = {
-    'default': env.db(),
+    'default': DB_PARAMETERS
 }
 
 # Password validation
@@ -132,9 +152,28 @@ STATICFILES_DIRS = [
 MEDIA_URL = 'media/'
 MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
 
-if not DEBUG:
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # noqa: E501
+# Cloudinary settings
+# https://github.com/klis87/django-cloudinary-storage#readme
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': env('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': env('CLOUDINARY_API_KEY'),
+    'API_SECRET': env('CLOUDINARY_API_SECRET'),
+    'SECURE': True,
+    'MEDIA_TAG': 'digital_showcase_media',
+    'INVALID_VIDEO_ERROR_MESSAGE': 'Carregue um arquivo de vídeo válido.',
+    'EXCLUDE_DELETE_ORPHANED_MEDIA_PATHS': (),
+    'STATIC_TAG': 'digital_showcase_static',
+    'STATICFILES_MANIFEST_ROOT': Path.joinpath(BASE_DIR, 'manifest'),
+    'STATIC_IMAGES_EXTENSIONS': ['jpg', 'jpe', 'jpeg', 'jpc', 'jp2', 'j2k',
+                                 'wdp', 'jxr', 'hdp', 'png', 'gif', 'webp',
+                                 'bmp', 'tif', 'tiff', 'ico'],
+    'STATIC_VIDEOS_EXTENSIONS': ['mp4', 'webm', 'flv', 'mov', 'ogv', '3gp',
+                                 '3g2', 'wmv', 'mpeg', 'flv', 'mkv', 'avi']
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'  # noqa: E501
 
 # Service worker and Manifest.json file data(PWABuilder)
 # https://github.com/silviolleite/django-pwa
@@ -202,6 +241,8 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+
+# Defines the description and image that represent the store groups.
 
 GROUP_STORES_IMAGES = {
     'Doceria': ('stores/img/group-candy.jpg', 'cake'),
