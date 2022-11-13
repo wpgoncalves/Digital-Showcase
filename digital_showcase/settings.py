@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from cloudinary import config as cloudinary_config
 from django.contrib.messages import constants as messages
 from environ import Env
 
@@ -171,6 +172,8 @@ CLOUDINARY_STORAGE = {
     'STATIC_VIDEOS_EXTENSIONS': ['mp4', 'webm', 'flv', 'mov', 'ogv', '3gp',
                                  '3g2', 'wmv', 'mpeg', 'flv', 'mkv', 'avi']
 }
+
+cloudinary_config(api_proxy='http://proxy.server:3128')
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'  # noqa: E501
