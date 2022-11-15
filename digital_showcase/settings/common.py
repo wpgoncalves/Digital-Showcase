@@ -1,65 +1,21 @@
 from pathlib import Path
 
-from cloudinary import config as cloudinary_config
 from django.contrib.messages import constants as messages
 from environ import Env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Create an instance of django-environ and load environment variable values.
 # The .env file is not versioned.
-env = Env()
+env = Env(DEBUG=(bool, False))
 env.read_env(Path.joinpath(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('DJANGO_SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DJANGO_DEBUG', bool, False)
-
-if DEBUG:
-    ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
-else:
-    ALLOWED_HOSTS = ['digitalshowcase.pythonanywhere.com']
-
-# Application definition
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'cloudinary_storage',
-    'whitenoise.runserver_nostatic',
-    'django.contrib.staticfiles',
-    'cloudinary',
-    'global_models',
-    'newsletter',
-    'customers',
-    'products',
-    'showcase',
-    'stores',
-    'about',
-    'cart',
-    'app',
-    'pwa',
-    'django_cleanup.apps.CleanupConfig'
-]
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+SECRET_KEY = env.str('DJANGO_SECRET_KEY')
 
 ROOT_URLCONF = 'digital_showcase.urls'
 
@@ -74,38 +30,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                'django.contrib.messages.context_processors.messages'
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'digital_showcase.wsgi.application'
-
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-if DEBUG:
-    DB_PARAMETERS = {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-else:
-    DB_PARAMETERS = {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASSWORD'),
-        'HOST': env('DATABASE_HOST'),
-        'PORT': env('DATABASE_PORT'),
-        'OPTION': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        }
-    }
-
-DATABASES = {
-    'default': DB_PARAMETERS
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -124,7 +55,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',  # noqa: E501
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -152,31 +82,6 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
-
-# Cloudinary settings
-# https://github.com/klis87/django-cloudinary-storage#readme
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': env('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': env('CLOUDINARY_API_KEY'),
-    'API_SECRET': env('CLOUDINARY_API_SECRET'),
-    'SECURE': True,
-    'MEDIA_TAG': 'digital_showcase_media',
-    'INVALID_VIDEO_ERROR_MESSAGE': 'Carregue um arquivo de vídeo válido.',
-    'EXCLUDE_DELETE_ORPHANED_MEDIA_PATHS': (),
-    'STATIC_TAG': 'digital_showcase_static',
-    'STATICFILES_MANIFEST_ROOT': Path.joinpath(BASE_DIR, 'manifest'),
-    'STATIC_IMAGES_EXTENSIONS': ['jpg', 'jpe', 'jpeg', 'jpc', 'jp2', 'j2k',
-                                 'wdp', 'jxr', 'hdp', 'png', 'gif', 'webp',
-                                 'bmp', 'tif', 'tiff', 'ico'],
-    'STATIC_VIDEOS_EXTENSIONS': ['mp4', 'webm', 'flv', 'mov', 'ogv', '3gp',
-                                 '3g2', 'wmv', 'mpeg', 'flv', 'mkv', 'avi']
-}
-
-cloudinary_config(api_proxy='http://proxy.server:3128')
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'  # noqa: E501
 
 # Service worker and Manifest.json file data(PWABuilder)
 # https://github.com/silviolleite/django-pwa
