@@ -12,6 +12,8 @@ urlpatterns = [
     path('showcase/', include('showcase.urls')),
     path('customers/', include('customers.urls')),
     path('app/', include('app.urls')),
+    path('api/', include('api.urls')),
+    path('api-auth/', include('rest_framework.urls')),
     path('', RedirectView.as_view(url='mall/')),
     path('', include('pwa_fix.urls'))
 ]
