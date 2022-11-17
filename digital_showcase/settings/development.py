@@ -13,6 +13,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'global_models',
     'newsletter',
     'customers',
@@ -21,6 +22,7 @@ INSTALLED_APPS = [
     'stores',
     'about',
     'cart',
+    'api',
     'app',
     'pwa'
 ]

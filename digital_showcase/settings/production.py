@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'rest_framework',
     'cloudinary',
     'global_models',
     'newsletter',
@@ -26,6 +27,7 @@ INSTALLED_APPS = [
     'stores',
     'about',
     'cart',
+    'api',
     'app',
     'pwa',
     'django_cleanup.apps.CleanupConfig'
