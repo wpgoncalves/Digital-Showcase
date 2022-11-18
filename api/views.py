@@ -7,5 +7,5 @@ from rest_framework.reverse import reverse
 def api_root(request, format=None):
     return Response({
         'products': reverse('products-list', request=request, format=format),
-        # 'adresses': reverse('adresses-list', request=request, format=format)
+        'stores': reverse('stores-list', request=request, format=format)
     })
