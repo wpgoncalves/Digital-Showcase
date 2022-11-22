@@ -1,11 +1,21 @@
 @charset "UTF-8";
 
 @media (min-width: 576px){
-    .product-card {
+    /* .product-card {
         transition: all 0.5s ease;
     }
 
     .product-card:hover {
+        -webkit-transform: scale(1.02);
+        -ms-transform: scale(1.02);
+        transform: scale(1.02);
+    } */
+
+    .carousel-item__image {
+        transition: transform 0.5s ease;
+    }
+
+    .carousel-item__image:hover {
         -webkit-transform: scale(1.1);
         -ms-transform: scale(1.1);
         transform: scale(1.1);
@@ -13,14 +23,15 @@
 }
 
 #carouselShowcase .carousel-inner > .carousel-item > img {
+    cursor: pointer;
     height: 36rem;
-    object-fit: fill;
+    object-fit: scale-down;
     object-position: center;
 }
 
 #carouselShowcase .carousel-inner .carousel-caption {
-    -webkit-backdrop-filter: brightness(50%);
-    backdrop-filter: brightness(50%);
+    -webkit-backdrop-filter: brightness(90%);
+    backdrop-filter: brightness(90%);
 }
 
 #carouselDetailsModal .carousel-inner .carousel-item img {
@@ -31,4 +42,30 @@
 
 #detailsModal .modal-body p {
     font-size: medium;
+}
+
+.separator {
+    align-items: center;
+    padding: 1.5rem 0;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.separator > h4 {
+    background-color: #f5f5f5;
+    color: #757575;
+    display: inline-block;
+    font-weight: 400;
+    height: 32px;
+    left: calc(50% - 80px);
+    letter-spacing: 0.1rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+    position: absolute;
+    text-align: center;
+    /* text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5); */
+    text-transform: uppercase;
+    top: calc(50% - 16px);
+    width: 160px;
 }

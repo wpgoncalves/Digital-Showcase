@@ -1,8 +1,9 @@
-from customers.models import Adresses, Emails, Phones
 from django.core.exceptions import ValidationError
 from django.db import models
-from global_models.models import SocialNetworks
 from validate_docbr import CNPJ
+
+from customers.models import Adresses, Emails, Phones
+from global_models.models import SocialNetworks
 
 
 class Stores(models.Model):
@@ -67,6 +68,11 @@ class Stores(models.Model):
 
     active = models.BooleanField(verbose_name='Ativa',
                                  default=True)
+
+    logo = models.ImageField(blank=True,
+                             null=True,
+                             upload_to='stores_images/',
+                             verbose_name='Logotipo')
 
     recorded = models.DateTimeField(verbose_name='Gravado em',
                                     auto_now_add=True)

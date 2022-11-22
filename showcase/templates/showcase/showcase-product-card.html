@@ -3,58 +3,58 @@
 <div class="col">
     <div class="product-card card h-100 rounded-4 shadow" data-toggle="tooltip" data-placement="top" title="">
 
-        <!-- Carousel Card -->
+        {% comment %} Carousel Card {% endcomment %}
         <div id="carouselCard{{ product.id }}" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-indicators">
-                {% for cover_image in store_products_img|set_product:product %}
-                    {% if store_products_img|set_product:product|length > 1 %}
-                        <button type="button" data-bs-target="#carouselCard{{ product.id }}" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.counter0 < 1  %}class="active"{% endif %} aria-current="true" aria-label="Slide {{ forloop.counter0 }}"></button>
-                    {% endif %}
-                {% endfor %}
+            {% for cover_image in store_products_img|set_product:product %}
+            {% if store_products_img|set_product:product|length > 1 %}
+                <button type="button" data-bs-target="#carouselCard{{ product.id }}" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.counter0 < 1  %}class="active"{% endif %} aria-current="true" aria-label="Slide {{ forloop.counter0 }}"></button>
+            {% endif %}
+            {% endfor %}
             </div>
 
             <div class="carousel-inner">
-                {% for cover_image in store_products_img|set_product:product %}
-                    <div class="carousel-item {% if forloop.counter0 < 1  %}active{% endif %}" data-bs-interval="3000">
-                        <img src="{{ cover_image.image.url }}" class="d-block w-100 card-img-rounded-top-4" alt="{{ product.name}} - Imagem {{ forloop.counter0 }}" style="height: 18rem; object-fit: cover; object-position: center;">
+            {% for cover_image in store_products_img|set_product:product %}
+                <div class="carousel-item {% if forloop.counter0 < 1  %}active{% endif %}" data-bs-interval="3000">
+                    <img src="{{ cover_image.image.url }}" class="carousel-item__image d-block w-100 card-img-rounded-top-4" alt="{{ product.name}} - Imagem {{ forloop.counter0 }}" style="height: 18rem; object-fit: cover; object-position: center;">
 
-                        {% if product.sale %}
-                            <div class="carousel-card-cover-caption text-warning d-none d-md-block p-2 rounded-pill">
-                                <div class="card-cover-header">
-                                    <span class="material-symbols-rounded">sell</span>
-                                    <h6 class="card-subtitle ms-2 text-uppercase text-spacing-1">Promoção</h6>
-                                    <small class="card-subtitle ms-auto fst-italic fw-bold">{{ product.discount }}% Off</small>
-                                </div>
-                            </div>
-                        {% endif %}
+                    {% if product.sale %}
+                    <div class="carousel-card-cover-caption text-warning d-none d-md-block p-2 rounded-pill">
+                        <div class="card-cover-header">
+                            <span class="material-symbols-rounded">sell</span>
+                            <h6 class="card-subtitle ms-2 text-uppercase text-spacing-1">Promoção</h6>
+                            <small class="card-subtitle ms-auto fst-italic fw-bold">{{ product.discount }}% Off</small>
+                        </div>
                     </div>
-                {% empty %}
-                    <div class="carousel-item active" data-bs-interval="3000">
-                        <img src="{% static 'img/load-picture.png' %}" class="d-block w-100 card-img-rounded-top-4" alt="Sem imagem">
+                    {% endif %}
+                </div>
+            {% empty %}
+                <div class="carousel-item active" data-bs-interval="3000">
+                    <img src="{% static 'img/load-picture.png' %}" class="carousel-item__image d-block w-100 card-img-rounded-top-4" alt="Sem imagem">
 
-                        {% if product.sale %}
-                            <div class="carousel-card-cover-caption text-warning d-none d-md-block">
-                                <div class="card-cover-header">
-                                    <span class="material-symbols-rounded">sell</span>
-                                    <h6 class="card-subtitle ms-2 text-uppercase text-spacing-1">Promoção</h6>
-                                    <small class="card-subtitle ms-auto fst-italic fw-bold">33% Off</small>
-                                </div>
-                            </div>
-                        {% endif %}
+                    {% if product.sale %}
+                    <div class="carousel-card-cover-caption text-warning d-none d-md-block">
+                        <div class="card-cover-header">
+                            <span class="material-symbols-rounded">sell</span>
+                            <h6 class="card-subtitle ms-2 text-uppercase text-spacing-1">Promoção</h6>
+                            <small class="card-subtitle ms-auto fst-italic fw-bold">33% Off</small>
+                        </div>
                     </div>
-                {% endfor %}
+                    {% endif %}
+                </div>
+            {% endfor %}
             </div>
 
             {% if store_products_img|set_product:product|length > 1 %}
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselCard{{ product.id }}" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Anterior</span>
-                </button>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselCard{{ product.id }}" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
 
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselCard{{ product.id }}" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Próximo</span>
-                </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselCard{{ product.id }}" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
             {% endif %}
         </div>
 
@@ -64,16 +64,16 @@
 
             <!-- if true promotion show it otherwise hide it  -->
             {% if product.sale %}
-                <small class="card-text text-decoration-line-through m-0">de: R$ {{ product.full_price }}</small>
+            <small class="card-text text-decoration-line-through m-0">de: R$ {{ product.full_price }}</small>
             {% endif %}
 
             <div class="d-flex flex-grow-1 align-items-center mb-3">
-                <!-- if true promotion show  -->
-                {% if product.sale %}
-                    <p class="card-text fs-4 fw-bold">Por: R$ {{ product.discount_price }}</p>
-                {% else %}
-                    <p class="card-text fs-2 fw-bold">R$ {{ product.full_price }}</p>
-                {% endif %}
+            <!-- if true promotion show  -->
+            {% if product.sale %}
+                <p class="card-text fs-4 fw-bold">Por: R$ {{ product.discount_price }}</p>
+            {% else %}
+                <p class="card-text fs-2 fw-bold">R$ {{ product.full_price }}</p>
+            {% endif %}
             </div>
 
             <script id="image_list_{{ product.id }}" type="application/json">

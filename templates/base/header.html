@@ -1,21 +1,33 @@
 {% load static %}
 
 <div class="container-fluid">
-    <a href="{% url 'stores:choose-store' %}" class="navbar-brand d-flex" style="font-size: 28px !important;">
-        <img class="d-inline-block align-text-top" src="{% static "img/brand.png" %}" alt="Brand" width="110" height="46">
-        <span id="brand" class="ms-2 text-white d-none">Vitrine Digital</span>
-    </a>
+    <div class="gridNavHeader">
+        <div class="gridToggler">
+            <div class="d-flex align-items-center justify-content-center h-100 v-100">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+                    aria-controls="navbarMain" aria-expanded="false" aria-label="Alternar de navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
 
-    <div class="d-flex flex-row flex-nowrap">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
-            aria-controls="navbarMain" aria-expanded="false" aria-label="Alternar de navegação">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="gridBrand">
+            <div class="gridBrand__justity d-flex align-items-center h-100 v-100">
+                <a href="{% url 'stores:choose-store' %}" class="navbar-brand d-flex" style="font-size: 28px !important;">
+                    <img class="d-inline-block align-text-top" src="{% static "img/brand.png" %}" alt="Brand" width="110" height="46">
+                    <span id="brand" class="ms-2 text-white d-none">Vitrine Digital</span>
+                </a>
+            </div>
+        </div>
 
-        <button class="navbar-toggler rounded-circle ms-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#orderItems" 
-            aria-controls="orderItems">
-            <span class="material-symbols-rounded pt-1">shopping_cart</span>
-        </button>
+        <div class="gridCart">
+            <div class="d-flex align-items-center justify-content-center h-100 v-100">
+                <button class="navbar-toggler rounded-circle" type="button" data-bs-toggle="offcanvas" data-bs-target="#orderItems" 
+                    aria-controls="orderItems">
+                    <span class="material-symbols-rounded pt-1">shopping_cart</span>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 

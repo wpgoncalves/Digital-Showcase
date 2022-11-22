@@ -31,7 +31,7 @@ class StoresAdmin(admin.ModelAdmin):
         (None, {
             'fields':
             ('cnpj', 'business_name', 'title_establishment', 'group', 'slug',
-             'active'),
+             'logo', 'active'),
             'description':
             '<h4><b>*Os campos em negrito são de preenchimento obrigatório.</b></h4>',  # noqa: E501
         }),

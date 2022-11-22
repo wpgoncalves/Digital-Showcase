@@ -17,6 +17,31 @@
     text-shadow: 3px 3px 4px #000;
 }
 
+.gridNavHeader {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-rows: auto;
+    width: 100%;
+}
+
+.gridNavHeader > .gridToggler {
+    /* background-color: lightcoral; */
+    grid-area: Toggler;
+
+}
+
+.gridNavHeader > .gridBrand {
+    /* background-color: lightblue; */
+    grid-area: Brand;
+    
+}
+
+.gridNavHeader > .gridCart {
+    /* background-color: lightgreen; */
+    grid-area: Cart;
+
+}
+
 .flex-basis-auto {
     flex-basis: auto;
 }
@@ -173,5 +198,27 @@
     100% {
         -webkit-transform: translateX(0);
         transform: translateX(0);
+    }
+}
+
+@media only screen and (min-width:0){
+    .gridNavHeader {
+        grid-template-areas: "Toggler Brand Cart";
+        grid-template-columns: 56px 1fr 56px;
+    }
+
+    .gridBrand__justity {
+        justify-content: center;
+    }
+}
+
+@media only screen and (min-width:768px){
+    .gridNavHeader {
+        grid-template-areas: "Brand Toggler Cart";
+        grid-template-columns: 1fr 56px 56px;
+    }
+
+    .gridBrand__justity {
+        justify-content: start;
     }
 }
