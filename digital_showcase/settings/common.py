@@ -1,3 +1,5 @@
+import sys
+from os.path import exists, isfile
 from pathlib import Path
 
 from django.contrib.messages import constants as messages
@@ -6,9 +8,32 @@ from environ import Env
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Create an instance of django-environ.
+# Create an instance of django-environ and load environment variable values.
 # The .env file is not versioned.
 env = Env(DEBUG=(bool, False))
+
+try:
+    BASE_DIR_ENV = BASE_DIR
+    PATH_ENV = Path.joinpath(BASE_DIR_ENV, '.env')
+
+    if exists(PATH_ENV) and isfile(PATH_ENV):  # noqa: E501
+        env.read_env(PATH_ENV)
+    else:
+        BASE_DIR_ENV = BASE_DIR.parent
+        PATH_ENV = Path.joinpath(BASE_DIR_ENV, '.env')
+
+        if exists(PATH_ENV) and isfile(PATH_ENV):  # noqa: E501
+            env.read_env(PATH_ENV)
+        else:
+            sys.exit()
+except SystemExit as exc_system_exit:
+    raise SystemExit(
+        'Unable to import configuration files. '
+        'Check that all environment variables have been properly declared.'
+    ) from exc_system_exit
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = env.str('DJANGO_SECRET_KEY')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/

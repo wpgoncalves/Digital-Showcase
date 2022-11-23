@@ -1,10 +1,4 @@
-from digital_showcase.settings.common import BASE_DIR, Path, env
-
-# Load environment variable values
-env.read_env(Path.joinpath(BASE_DIR, '.env'))
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str('DJANGO_SECRET_KEY')
+from digital_showcase.settings.common import BASE_DIR
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
