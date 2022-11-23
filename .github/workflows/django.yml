@@ -28,6 +28,9 @@ jobs:
       run: |
         python -m pip install pip --upgrade
         pip install -r requirements.txt
+    - name: Preparing file with environment variables
+      run: |
+        touch .env
     - name: Database preparation
       run: |
         python manage.py makemigrations
