@@ -14,18 +14,18 @@ from digital_showcase.settings.common import (AUTH_PASSWORD_VALIDATORS,
                                               PWA_APP_STATUS_BAR_COLOR,
                                               PWA_APP_THEME_COLOR,
                                               PWA_SERVICE_WORKER_PATH,
-                                              ROOT_URLCONF, SECRET_KEY,
-                                              STATIC_ROOT, STATIC_URL,
-                                              STATICFILES_DIRS, TEMPLATES,
-                                              TIME_ZONE, USE_I18N, USE_TZ,
-                                              WSGI_APPLICATION, env)
+                                              ROOT_URLCONF, STATIC_ROOT,
+                                              STATIC_URL, STATICFILES_DIRS,
+                                              TEMPLATES, TIME_ZONE, USE_I18N,
+                                              USE_TZ, WSGI_APPLICATION, env)
 
 try:
     if env.bool('DEVELOPMENT_RUN_MODE', True):
         from digital_showcase.settings.development import (ALLOWED_HOSTS,
                                                            DATABASES, DEBUG,
                                                            INSTALLED_APPS,
-                                                           MIDDLEWARE)
+                                                           MIDDLEWARE,
+                                                           SECRET_KEY)
     else:
         from digital_showcase.settings.production import (ALLOWED_HOSTS,
                                                           CLOUDINARY_STORAGE,
@@ -33,6 +33,7 @@ try:
                                                           DEFAULT_FILE_STORAGE,
                                                           INSTALLED_APPS,
                                                           MIDDLEWARE,
+                                                          SECRET_KEY,
                                                           STATICFILES_STORAGE)
 
 except ImportError as exc_import:
