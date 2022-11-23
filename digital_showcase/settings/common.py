@@ -6,16 +6,12 @@ from environ import Env
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# Create an instance of django-environ and load environment variable values.
+# Create an instance of django-environ.
 # The .env file is not versioned.
 env = Env(DEBUG=(bool, False))
-env.read_env(Path.joinpath(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.str('DJANGO_SECRET_KEY')
 
 ROOT_URLCONF = 'digital_showcase.urls'
 
