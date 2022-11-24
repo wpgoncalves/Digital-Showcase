@@ -1,3 +1,4 @@
+from os import environ, name, path
 from queue import Empty
 
 
@@ -69,3 +70,55 @@ def string_capitalize(value: str = None) -> str:
     list_words = list(map(lambda w: w.lower() if is_preposition(w)
                       else w.capitalize(), value.split(' ')))
     return ' '.join(list_words)
+
+
+def exists_dotenv(dotenv_path: str = None, dotenv_file: str = '.env') -> bool:
+    """It checks for the existence of the .env file with the environment
+    variables from the specified path and file. If no values are provided,
+    the function will search from the user's personal folder for an .env file.
+
+    (pt-br) Realiza a verificação da existência do arquivo .env com as
+    variáveis de ambiente a partir do caminho e arquivo expecificado. Caso não
+    seja fornecido valores a função buscará a partir da pasta pessoal do
+    usuário por um arquivo .env.
+
+    Args:
+        dotenv_path (str, optional): Value of type string that will receive the
+        initial path for the file. Defaults to None.
+
+        (pt-br) Valor do tipo string que receberá o caminho inicial para o
+        arquivo.
+
+        dotenv_file (str, optional): String type value that will receive the
+        file name.
+
+        (pt-br) Valor do tipo string que receberá o nome do arquivo.
+
+    Raises:
+        KeyError: Informs the user that the key with the path to the local
+        folder configured in the environment variables does not exist.
+
+        (pt-br) Informa ao usuário que não existe a chave com o caminho para
+        pasta local configurada nas variáveis de ambiente.
+
+    Returns:
+        bool: Returns a true or false value informing whether the .env file
+        could be found.
+
+        (pt-BR) Retorna um valor verdadeiro ou falso informando se foi possível
+        localizar o arquivo .env.
+    """
+
+    dotenv_key = 'USERPROFILE' if name == 'nt' else 'HOME'
+
+    try:
+        if dotenv_path is None:
+            dotenv_path = environ[dotenv_key]
+
+        dotenv_path_file = path.abspath(path.join(dotenv_path, dotenv_file))
+
+        return path.exists(dotenv_path_file) and path.isfile(dotenv_path_file)
+    except KeyError as exc_keyerror:
+        raise KeyError(
+            f'{dotenv_key} not found in system variables.'
+        )from exc_keyerror

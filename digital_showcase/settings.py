@@ -1,42 +1,64 @@
-import sys
-from os.path import exists, isfile
 from pathlib import Path
 
+from cloudinary import config as cloudinary_config
 from django.contrib.messages import constants as messages
 from environ import Env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Create an instance of django-environ and load environment variable values.
-# The .env file is not versioned.
-env = Env(DEBUG=(bool, False))
+# Create an instance of django-environ
+# The .env file is not versioned
+env = Env()
+env.read_env(Path.joinpath(BASE_DIR.parent, '.env'))
 
-try:
-    BASE_DIR_ENV = BASE_DIR
-    PATH_ENV = Path.joinpath(BASE_DIR_ENV, '.env')
-
-    if exists(PATH_ENV) and isfile(PATH_ENV):  # noqa: E501
-        env.read_env(PATH_ENV)
-    else:
-        BASE_DIR_ENV = BASE_DIR.parent
-        PATH_ENV = Path.joinpath(BASE_DIR_ENV, '.env')
-
-        if exists(PATH_ENV) and isfile(PATH_ENV):  # noqa: E501
-            env.read_env(PATH_ENV)
-        else:
-            sys.exit()
-except SystemExit as exc_system_exit:
-    raise SystemExit(
-        'Unable to import configuration files. '
-        'Check that all environment variables have been properly declared.'
-    ) from exc_system_exit
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str('DJANGO_SECRET_KEY')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = env.bool('DJANGO_DEBUG')
+
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS')
+
+# Application definition
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'cloudinary_storage',
+    'whitenoise.runserver_nostatic',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'cloudinary',
+    'global_models',
+    'newsletter',
+    'customers',
+    'products',
+    'showcase',
+    'stores',
+    'about',
+    'cart',
+    'api',
+    'app',
+    'pwa',
+    'django_cleanup.apps.CleanupConfig'
+]
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
 
 ROOT_URLCONF = 'digital_showcase.urls'
 
@@ -59,8 +81,50 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'digital_showcase.wsgi.application'
 
+# Database
+# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env.str('DATABASE_NAME'),
+        'USER': env.str('DATABASE_USER'),
+        'PASSWORD': env.str('DATABASE_PASSWORD'),
+        'HOST': env.str('DATABASE_HOST'),
+        'PORT': env.str('DATABASE_PORT'),
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        }
+    }
+}
+
+# Cloudinary settings
+# https://github.com/klis87/django-cloudinary-storage#readme
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': env.str('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': env.str('CLOUDINARY_API_KEY'),
+    'API_SECRET': env.str('CLOUDINARY_API_SECRET'),
+    'SECURE': True,
+    'MEDIA_TAG': 'digital_showcase_media',
+    'INVALID_VIDEO_ERROR_MESSAGE': 'Carregue um arquivo de vídeo válido.',
+    'EXCLUDE_DELETE_ORPHANED_MEDIA_PATHS': (),
+    'STATIC_TAG': 'digital_showcase_static',
+    'STATICFILES_MANIFEST_ROOT': Path.joinpath(BASE_DIR, 'manifest'),
+    'STATIC_IMAGES_EXTENSIONS': ['jpg', 'jpe', 'jpeg', 'jpc', 'jp2', 'j2k',
+                                 'wdp', 'jxr', 'hdp', 'png', 'gif', 'webp',
+                                 'bmp', 'tif', 'tiff', 'ico'],
+    'STATIC_VIDEOS_EXTENSIONS': ['mp4', 'webm', 'flv', 'mov', 'ogv', '3gp',
+                                 '3g2', 'wmv', 'mpeg', 'flv', 'mkv', 'avi']
+}
+
+cloudinary_config(api_proxy='http://proxy.server:3128')
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'  # noqa: E501
+
 # Password validation
-# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
+# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -77,8 +141,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 # Internationalization
-# https://docs.djangoproject.com/en/4.0/topics/i18n/
+# https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 LANGUAGE_CODE = 'pt-BR'
 
@@ -88,9 +153,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.1/howto/static-files/
 STATIC_URL = 'static/'
 STATIC_ROOT = Path.joinpath(BASE_DIR, 'static')
 
@@ -156,13 +221,19 @@ PWA_APP_LANG = 'pt-BR'
 PWA_APP_STATUS_BAR_COLOR = 'default'
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Setting the pagination style in rest_framework app
+# https://www.django-rest-framework.org/api-guide/pagination/#pagenumberpagination
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',  # noqa: E501
+    'PAGE_SIZE': 10
+}
+
 # Defines message type constants
 # https://docs.djangoproject.com/en/4.0/ref/settings/#messages
-
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-primary',
     messages.INFO: 'alert-info',
@@ -172,7 +243,6 @@ MESSAGE_TAGS = {
 }
 
 # Defines the description and image that represent the store groups.
-
 GROUP_STORES_IMAGES = {
     'Doceria': ('stores/img/group-candy.jpg', 'cake'),
     'Lanchonete': ('stores/img/group-snack-bars.jpg', 'coffee'),
