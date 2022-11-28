@@ -2,11 +2,6 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-from pathlib import Path
-
-from environ import Env
-
-from utils.tools import exists_dotenv
 
 
 def main():
@@ -24,6 +19,4 @@ def main():
 
 
 if __name__ == '__main__':
-    if exists_dotenv(os.path.abspath(Path(__file__).resolve().parent)):
-        Env().read_env(os.path.join(Path(__file__).resolve().parent, '.env'))
-        main()
+    main()
